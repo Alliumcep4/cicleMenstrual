@@ -156,12 +156,12 @@ import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/fireb
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBM_nkWZWTrGxdvpLD94XNzD4rLmOa2rI0",
-  authDomain: "rodacicle.firebaseapp.com",
-  projectId: "rodacicle",
-  storageBucket: "rodacicle.firebasestorage.app",
-  messagingSenderId: "984220546287",
-  appId: "1:984220546287:web:d16642d1ae78dfb0b1571a"
+    apiKey: "AIzaSyBM_nkWZWTrGxdvpLD94XNzD4rLmOa2rI0",
+    authDomain: "rodacicle.firebaseapp.com",
+    projectId: "rodacicle",
+    storageBucket: "rodacicle.firebasestorage.app",
+    messagingSenderId: "984220546287",
+    appId: "1:984220546287:web:d16642d1ae78dfb0b1571a"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -169,12 +169,11 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-let data = { cycles: [], cur: null };
 let user = null;
 let drops = 0;
-const BLBL=['CAP','LLEUGER','M.LLEUGER','MODERAT','ABUNDANT','M.ABUNDANT'];
+const labels = ['CAP','LLEUGER','M. LLEUGER','MODERAT','ABUNDANT','M. ABUNDANT'];
 
-// Lógica Gotas
+// --- LÓGICA DE LAS GOTAS ---
 const dropBtns = document.querySelectorAll('.dbtn');
 const dropLabel = document.getElementById('dropLabel');
 
@@ -183,131 +182,132 @@ function updateDropUI(val) {
     dropBtns.forEach(b => {
         b.classList.toggle('active', parseInt(b.dataset.val) <= drops);
     });
-    dropLabel.textContent = BLBL[drops];
+    if (dropLabel) dropLabel.textContent = labels[drops] || 'CAP';
 }
 
 dropBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-        const v = parseInt(btn.dataset.val);
-        updateDropUI(drops === v ? 0 : v);
+        const val = parseInt(btn.dataset.val);
+        updateDropUI(drops === val ? 0 : val);
     });
 });
 
-// Auth
+// --- AUTENTICACIÓN ---
 const btnAuth = document.getElementById('authBtn');
 const userInfo = document.getElementById('userInfo');
 
 btnAuth.addEventListener('click', () => {
     if (user) signOut(auth);
-    else signInWithPopup(auth, provider);
+    else signInWithPopup(auth, provider).catch(err => console.error("Error Login:", err));
 });
 
 onAuthStateChanged(auth, async (u) => {
     user = u;
     if (u) {
         btnAuth.textContent = "SORTIR";
-        userInfo.textContent = u.displayName.toUpperCase();
+        if (userInfo) userInfo.textContent = u.displayName.toUpperCase();
         await loadData();
     } else {
-        btnAuth.textContent = "ENTRAR AMB GOOGLE";
-        userInfo.textContent = "";
-        document.getElementById('gridBody').innerHTML = '<div style="text-align:center; padding:2rem;">INICIA SESSIÓ PER VEURE LES DADES</div>';
+        btnAuth.textContent = "LOGIN GOOGLE";
+        if (userInfo) userInfo.textContent = "";
+        document.getElementById('gridBody').innerHTML = '<div style="text-align:center; padding:2rem;">INICIA SESSIÓ PER VEURE DADES</div>';
     }
 });
 
+// --- DATOS Y RENDER ---
 async function loadData() {
-    const snap = await getDoc(doc(db, "users", user.uid));
-    if (snap.exists()) {
-        data = snap.data();
-    } else {
-        data = { cycles: [], cur: null };
-        const id = 'c' + Date.now();
-        data.cycles.unshift({ id, startDate: new Date().toISOString().split('T')[0], entries: {} });
-        data.cur = id;
-    }
-    renderAll();
-}
-
-async function saveData() {
     if (!user) return;
-    await setDoc(doc(db, "users", user.uid), data);
-    showToast("SINCRONITZAT! ✨");
+    try {
+        const snap = await getDoc(doc(db, "users", user.uid));
+        if (snap.exists()) {
+            render(snap.data());
+        } else {
+            document.getElementById('gridBody').innerHTML = '<div style="text-align:center; padding:2rem;">SENSE REGISTRES</div>';
+        }
+    } catch (e) {
+        console.error("Error cargando datos:", e);
+    }
 }
 
-function renderAll() {
-    const cycleSelect = document.getElementById('cycleSelect');
-    cycleSelect.innerHTML = '';
-    data.cycles.forEach((c, i) => {
-        const o = document.createElement('option');
-        o.value = c.id;
-        o.textContent = `CICLE ${data.cycles.length - i} (${c.startDate})`;
-        cycleSelect.appendChild(o);
-    });
-    if (data.cur) cycleSelect.value = data.cur;
-
-    const cy = data.cycles.find(c => c.id === cycleSelect.value);
+function render(data) {
     const body = document.getElementById('gridBody');
-    if (!cy || Object.keys(cy.entries).length === 0) {
-        body.innerHTML = '<div style="text-align:center; padding:2rem; color:var(--text-mid)">SENSE REGISTRES</div>';
+    if (!data.entries || Object.keys(data.entries).length === 0) {
+        body.innerHTML = '<div style="text-align:center; padding:2rem;">SENSE REGISTRES</div>';
         return;
     }
 
-    const sorted = Object.values(cy.entries).sort((a,b) => new Date(b.date) - new Date(a.date));
-    body.innerHTML = sorted.map(e => {
-        const dNum = Math.round((new Date(e.date) - new Date(cy.startDate))/86400000) + 1;
-        return `
-            <div class="drow2">
-                <div class="dnum">${dNum}</div>
-                <div style="font-size:0.9rem">${e.emocions || '-'}</div>
-                <div style="font-size:0.9rem">${e.simptomes || '-'}</div>
-                <div><span class="dbadge ${e.desig}">${e.desig ? e.desig.toUpperCase() : '-'}</span></div>
-                <div style="text-align:center">${'💧'.repeat(e.sang) || '-'}</div>
-            </div>
-        `;
-    }).join('');
+    // Ordenar por fecha (más reciente arriba)
+    const sorted = Object.values(data.entries).sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    body.innerHTML = sorted.map(e => `
+        <div style="border-bottom:1px solid #444; padding:10px; display:grid; grid-template-columns: 100px 1fr 1fr 60px; gap:10px; align-items:center;">
+            <div style="font-family:'Press Start 2P'; font-size:8px; color:#f18dab;">${e.date}</div>
+            <div style="font-size:0.9rem;">${e.emocions || '-'}</div>
+            <div style="font-size:0.9rem;">${e.simptomes || '-'}</div>
+            <div style="text-align:right;">${'💧'.repeat(e.sang) || '0'}</div>
+        </div>
+    `).join('');
 }
 
+// --- ACCIÓN DE GUARDAR ---
 document.getElementById('btnSave').addEventListener('click', async () => {
-    if (!user) return alert("Inicia sessió!");
+    if (!user) {
+        alert("Inicia sessió amb Google primer!");
+        return;
+    }
+
     const date = document.getElementById('inputDate').value;
-    const cy = data.cycles.find(c => c.id === document.getElementById('cycleSelect').value);
-    if (!cy || !date) return;
+    const emocions = document.getElementById('inputEmocions').value;
+    const simptomes = document.getElementById('inputSimptomes').value;
+    const desig = document.querySelector('input[name="desig"]:checked')?.value || 'nul';
 
-    cy.entries[date] = {
-        date,
-        emocions: document.getElementById('inputEmocions').value,
-        simptomes: document.getElementById('inputSimptomes').value,
-        desig: document.querySelector('input[name="desig"]:checked')?.value || 'nul',
-        sang: drops
-    };
+    if (!date) {
+        alert("Posa una data!");
+        return;
+    }
 
-    await saveData();
-    renderAll();
-    // Reset
-    document.getElementById('inputEmocions').value = '';
-    document.getElementById('inputSimptomes').value = '';
-    updateDropUI(0);
-});
+    try {
+        const userRef = doc(db, "users", user.uid);
+        const snap = await getDoc(userRef);
+        let currentData = snap.exists() ? snap.data() : { entries: {} };
 
-document.getElementById('btnNewCycle').addEventListener('click', async () => {
-    const d = prompt("Data d'inici (AAAA-MM-DD):", new Date().toISOString().split('T')[0]);
-    if (d) {
-        const id = 'c' + Date.now();
-        data.cycles.unshift({ id, startDate: d, entries: {} });
-        data.cur = id;
-        await saveData();
-        renderAll();
+        // Añadir la nueva entrada
+        currentData.entries[date] = {
+            date,
+            emocions,
+            simptomes,
+            desig,
+            sang: drops // Aquí se guardan tus gotas
+        };
+
+        await setDoc(userRef, currentData);
+        
+        showToast("GUARDAT! ✨");
+        
+        // Limpiar formulario
+        document.getElementById('inputEmocions').value = '';
+        document.getElementById('inputSimptomes').value = '';
+        updateDropUI(0);
+        
+        // Refrescar tabla
+        render(currentData);
+        
+    } catch (error) {
+        console.error("Error al guardar:", error);
+        alert("Error al guardar en Firebase.");
     }
 });
 
-document.getElementById('cycleSelect').addEventListener('change', renderAll);
-
 function showToast(m) {
     const t = document.getElementById('toast');
-    t.textContent = m; t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3000);
+    if (t) {
+        t.textContent = m;
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 3000);
+    }
 }
 
+// Fecha por defecto
 document.getElementById('inputDate').value = new Date().toISOString().split('T')[0];
 </script>
 </body>
