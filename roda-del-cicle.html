@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Meva Roda del Cicle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixelarticons@1.8.1/css/pixelarticons.css">
+<style>
+:root {
+  --bg: #1a0a12; --bg2: #2a1020; --bg3: #3a1830; --panel: #fce4ec;
+  --panel2: #f8bbd0; --border: #f18dab; --pink: #dd6482; --pink2: #ff80c0;
+  --pink3: #ffb3d9; --red: #f07b96; --red2: #ff6688; --yellow: #ffe066;
+  --mint: #66ffcc; --lavender: #cc99ff; --cream: #fff5f9; --text-dark:#1a0a12;
+  --text-mid: #f589a0; --text-light:#fff5f9; --shadow: #7a354a;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:'VT323',monospace; background:var(--bg); color:var(--text-light);
+  min-height:100vh; background-image: repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(255,77,166,.04) 31px,rgba(255,77,166,.04) 32px), repeating-linear-gradient(90deg,transparent,transparent 31px,rgba(255,77,166,.04) 31px,rgba(255,77,166,.04) 32px);
+}
+
+/* Auth Bar */
+.auth-bar { display: flex; justify-content: flex-end; align-items: center; padding: 1rem; max-width: 1100px; margin: 0 auto; gap: 1rem; }
+.user-info { font-family: 'Press Start 2P'; font-size: 0.45rem; color: var(--pink3); }
+
+.pbox{ background:var(--panel); color:var(--text-dark); box-shadow:0 0 0 4px var(--border),0 0 0 8px var(--bg3),5px 5px 0 8px var(--shadow); }
+.pbox-dark{ background:var(--bg2); color:var(--text-light); box-shadow:0 0 0 4px var(--border),0 0 0 8px var(--bg),5px 5px 0 8px var(--shadow); }
+
+header{text-align:center; padding:1rem 1rem 1.8rem;}
+.htitle{ font-family:'Press Start 2P'; font-size:clamp(.7rem,2.2vw,1.05rem); color:var(--pink2); text-shadow:3px 3px 0 var(--shadow); }
+
+.wrap{max-width:1100px; margin:0 auto; padding:0 1.5rem 5rem; display:grid; grid-template-columns:350px 1fr; gap:2rem;}
+@media(max-width:800px){.wrap{grid-template-columns:1fr;}}
+.card{padding:1.6rem;}
+.ctitle{ font-family:'Press Start 2P'; font-size:.6rem; color:var(--border); margin-bottom:1.3rem; padding-bottom:.8rem; border-bottom:4px solid var(--panel2); display:flex; gap:.7rem; align-items:center; }
+.ctitle-dark{border-bottom-color:var(--bg3); color:var(--pink2);}
+
+/* Form */
+.fg{margin-bottom:1.1rem;}
+.fl{ font-family:'Press Start 2P'; font-size:.5rem; color:var(--text-mid); margin-bottom:.4rem; }
+input[type="date"], textarea, select { width:100%; background:var(--cream); border:0; box-shadow:inset 0 0 0 3px var(--border); padding:.6rem; font-family:'VT323'; font-size:1.2rem; outline:none; }
+
+.dopts{display:flex; gap:.5rem; flex-wrap:wrap;}
+.dopt{display:none;}
+.dopt+label{ padding:.4rem .7rem; background:var(--cream); box-shadow:0 0 0 3px var(--border); cursor:pointer; font-family:'Press Start 2P'; font-size:.45rem; color:var(--text-mid); }
+.dopt:checked+label{ background:var(--pink); color:white; }
+
+/* Gotas */
+.drow{display:flex; gap:.6rem; align-items:center; flex-wrap:wrap;}
+.dbtn{ background:none; border:none; cursor:pointer; padding:4px; transition:transform .1s; }
+.dbtn:hover{ transform:scale(1.2); }
+.drop-svg{ width:22px; height:28px; opacity:.2; transition:opacity .1s; }
+.dbtn.active .drop-svg{ opacity:1; }
+
+.bsave, .bnew, .bauth{ 
+    padding:.8rem; background:var(--pink); color:white; border:0; box-shadow:0 0 0 3px var(--border), 4px 4px 0 var(--shadow); 
+    font-family:'Press Start 2P'; font-size:.5rem; cursor:pointer; 
+}
+.bauth { background: var(--lavender); color: var(--bg); padding: .5rem .8rem; }
+
+/* Grid */
+.ghdr, .drow2{ display:grid; grid-template-columns:40px 1fr 1fr 65px 65px; gap:.3rem; padding:.5rem; align-items:center; }
+.ghdr{ background:var(--bg3); font-family:'Press Start 2P'; font-size:.35rem; color:var(--pink3); }
+.drow2{ background:var(--bg2); margin-top:4px; border:1px solid var(--bg3); font-size: 1rem; }
+.dnum{ font-family:'Press Start 2P'; font-size:.6rem; color:var(--pink2); text-align:center; background:var(--bg3); padding:4px 0; }
+.dbadge{ font-family:'Press Start 2P'; font-size:.35rem; padding: 2px 4px; border-radius: 2px; }
+.dbadge.alt { background: var(--lavender); color: var(--bg); }
+.dbadge.mig { background: var(--mint); color: var(--bg); }
+.dbadge.baix { background: var(--yellow); color: var(--bg); }
+
+.toast{ position:fixed; bottom:2rem; left:50%; transform:translateX(-50%) translateY(100px); background:var(--bg3); color:var(--pink2); padding:1rem; border:3px solid var(--border); z-index:999; transition:0.3s; font-family:'Press Start 2P'; font-size:.4rem;}
+.toast.show{ transform:translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="dropsym" viewBox="0 0 8 11">
+    <rect x="3" y="0" width="2" height="1" fill="currentColor"/>
+    <rect x="2" y="1" width="4" height="1" fill="currentColor"/>
+    <rect x="1" y="2" width="6" height="2" fill="currentColor"/>
+    <rect x="0" y="4" width="8" height="4" fill="currentColor"/>
+    <rect x="1" y="8" width="6" height="2" fill="currentColor"/>
+    <rect x="2" y="10" width="4" height="1" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<div class="auth-bar">
+  <div id="userInfo" class="user-info"></div>
+  <button id="authBtn" class="bauth">CARREGANT...</button>
+</div>
+
+<header>
+  <div class="htitle">LA MEVA RODA DEL CICLE</div>
+  <div style="color:var(--pink3); margin-top:5px; font-size:1.2rem;">✦ seguiment mensual ✦</div>
+</header>
+
+<div class="wrap">
+  <div class="pbox card">
+    <div class="ctitle"><i class="pixel icon-edit"></i> REGISTRE DEL DIA</div>
+    <div class="fg">
+      <div class="fl">DATA</div>
+      <input type="date" id="inputDate">
+    </div>
+    <div class="fg">
+      <div class="fl">EMOCIONS</div>
+      <textarea id="inputEmocions" placeholder="Com t'has sentit?"></textarea>
+    </div>
+    <div class="fg">
+      <div class="fl">SÍMPTOMES</div>
+      <textarea id="inputSimptomes" placeholder="Còlics, fatiga..."></textarea>
+    </div>
+    <div class="fg">
+      <div class="fl">DESIG SEXUAL</div>
+      <div class="dopts">
+        <input type="radio" name="desig" id="d-nul" value="nul" class="dopt"><label for="d-nul">NUL</label>
+        <input type="radio" name="desig" id="d-baix" value="baix" class="dopt"><label for="d-baix">BAIX</label>
+        <input type="radio" name="desig" id="d-mig" value="mig" class="dopt"><label for="d-mig">MIG</label>
+        <input type="radio" name="desig" id="d-alt" value="alt" class="dopt"><label for="d-alt">ALT</label>
+      </div>
+    </div>
+    <div class="fg">
+      <div class="fl">SANG</div>
+      <div class="drow" id="dropsRow">
+        <button class="dbtn" data-val="1"><svg class="drop-svg"><use href="#dropsym" style="color:#e53060"/></svg></button>
+        <button class="dbtn" data-val="2"><svg class="drop-svg"><use href="#dropsym" style="color:#e53060"/></svg></button>
+        <button class="dbtn" data-val="3"><svg class="drop-svg"><use href="#dropsym" style="color:#e53060"/></svg></button>
+        <button class="dbtn" data-val="4"><svg class="drop-svg"><use href="#dropsym" style="color:#e53060"/></svg></button>
+        <button class="dbtn" data-val="5"><svg class="drop-svg"><use href="#dropsym" style="color:#e53060"/></svg></button>
+        <span id="dropLabel" style="font-family:'Press Start 2P'; font-size:0.4rem; color:var(--text-mid)">CAP</span>
+      </div>
+    </div>
+    <button id="btnSave" class="bsave" style="width:100%">GUARDAR DIA</button>
+  </div>
+
+  <div class="pbox-dark card">
+    <div class="ctitle ctitle-dark">EL MEU DIARI</div>
+    <div style="display:flex; gap:10px; margin-bottom:1rem;">
+      <select id="cycleSelect"></select>
+      <button id="btnNewCycle" class="bnew">NOU CICLE</button>
+    </div>
+    <div class="ghdr">
+      <span>DIA</span><span>EMO</span><span>SIMP</span><span>DESIG</span><span>SANG</span>
+    </div>
+    <div id="gridBody"></div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBM_nkWZWTrGxdvpLD94XNzD4rLmOa2rI0",
+  authDomain: "rodacicle.firebaseapp.com",
+  projectId: "rodacicle",
+  storageBucket: "rodacicle.firebasestorage.app",
+  messagingSenderId: "984220546287",
+  appId: "1:984220546287:web:d16642d1ae78dfb0b1571a"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+let data = { cycles: [], cur: null };
+let user = null;
+let drops = 0;
+const BLBL=['CAP','LLEUGER','M.LLEUGER','MODERAT','ABUNDANT','M.ABUNDANT'];
+
+// Lógica Gotas
+const dropBtns = document.querySelectorAll('.dbtn');
+const dropLabel = document.getElementById('dropLabel');
+
+function updateDropUI(val) {
+    drops = val;
+    dropBtns.forEach(b => {
+        b.classList.toggle('active', parseInt(b.dataset.val) <= drops);
+    });
+    dropLabel.textContent = BLBL[drops];
+}
+
+dropBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const v = parseInt(btn.dataset.val);
+        updateDropUI(drops === v ? 0 : v);
+    });
+});
+
+// Auth
+const btnAuth = document.getElementById('authBtn');
+const userInfo = document.getElementById('userInfo');
+
+btnAuth.addEventListener('click', () => {
+    if (user) signOut(auth);
+    else signInWithPopup(auth, provider);
+});
+
+onAuthStateChanged(auth, async (u) => {
+    user = u;
+    if (u) {
+        btnAuth.textContent = "SORTIR";
+        userInfo.textContent = u.displayName.toUpperCase();
+        await loadData();
+    } else {
+        btnAuth.textContent = "ENTRAR AMB GOOGLE";
+        userInfo.textContent = "";
+        document.getElementById('gridBody').innerHTML = '<div style="text-align:center; padding:2rem;">INICIA SESSIÓ PER VEURE LES DADES</div>';
+    }
+});
+
+async function loadData() {
+    const snap = await getDoc(doc(db, "users", user.uid));
+    if (snap.exists()) {
+        data = snap.data();
+    } else {
+        data = { cycles: [], cur: null };
+        const id = 'c' + Date.now();
+        data.cycles.unshift({ id, startDate: new Date().toISOString().split('T')[0], entries: {} });
+        data.cur = id;
+    }
+    renderAll();
+}
+
+async function saveData() {
+    if (!user) return;
+    await setDoc(doc(db, "users", user.uid), data);
+    showToast("SINCRONITZAT! ✨");
+}
+
+function renderAll() {
+    const cycleSelect = document.getElementById('cycleSelect');
+    cycleSelect.innerHTML = '';
+    data.cycles.forEach((c, i) => {
+        const o = document.createElement('option');
+        o.value = c.id;
+        o.textContent = `CICLE ${data.cycles.length - i} (${c.startDate})`;
+        cycleSelect.appendChild(o);
+    });
+    if (data.cur) cycleSelect.value = data.cur;
+
+    const cy = data.cycles.find(c => c.id === cycleSelect.value);
+    const body = document.getElementById('gridBody');
+    if (!cy || Object.keys(cy.entries).length === 0) {
+        body.innerHTML = '<div style="text-align:center; padding:2rem; color:var(--text-mid)">SENSE REGISTRES</div>';
+        return;
+    }
+
+    const sorted = Object.values(cy.entries).sort((a,b) => new Date(b.date) - new Date(a.date));
+    body.innerHTML = sorted.map(e => {
+        const dNum = Math.round((new Date(e.date) - new Date(cy.startDate))/86400000) + 1;
+        return `
+            <div class="drow2">
+                <div class="dnum">${dNum}</div>
+                <div style="font-size:0.9rem">${e.emocions || '-'}</div>
+                <div style="font-size:0.9rem">${e.simptomes || '-'}</div>
+                <div><span class="dbadge ${e.desig}">${e.desig ? e.desig.toUpperCase() : '-'}</span></div>
+                <div style="text-align:center">${'💧'.repeat(e.sang) || '-'}</div>
+            </div>
+        `;
+    }).join('');
+}
+
+document.getElementById('btnSave').addEventListener('click', async () => {
+    if (!user) return alert("Inicia sessió!");
+    const date = document.getElementById('inputDate').value;
+    const cy = data.cycles.find(c => c.id === document.getElementById('cycleSelect').value);
+    if (!cy || !date) return;
+
+    cy.entries[date] = {
+        date,
+        emocions: document.getElementById('inputEmocions').value,
+        simptomes: document.getElementById('inputSimptomes').value,
+        desig: document.querySelector('input[name="desig"]:checked')?.value || 'nul',
+        sang: drops
+    };
+
+    await saveData();
+    renderAll();
+    // Reset
+    document.getElementById('inputEmocions').value = '';
+    document.getElementById('inputSimptomes').value = '';
+    updateDropUI(0);
+});
+
+document.getElementById('btnNewCycle').addEventListener('click', async () => {
+    const d = prompt("Data d'inici (AAAA-MM-DD):", new Date().toISOString().split('T')[0]);
+    if (d) {
+        const id = 'c' + Date.now();
+        data.cycles.unshift({ id, startDate: d, entries: {} });
+        data.cur = id;
+        await saveData();
+        renderAll();
+    }
+});
+
+document.getElementById('cycleSelect').addEventListener('change', renderAll);
+
+function showToast(m) {
+    const t = document.getElementById('toast');
+    t.textContent = m; t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+document.getElementById('inputDate').value = new Date().toISOString().split('T')[0];
+</script>
+</body>
+</html>
