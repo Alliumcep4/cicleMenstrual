@@ -61,14 +61,9 @@ input[type="date"], textarea, select { width:100%; background:var(--cream); bord
 .bauth { background: var(--lavender); color: var(--bg); padding: .5rem .8rem; }
 
 /* Grid */
-.ghdr, .drow2{ display:grid; grid-template-columns:40px 1fr 1fr 65px 65px; gap:.3rem; padding:.5rem; align-items:center; }
+.ghdr, .drow2{ display:grid; grid-template-columns:80px 1fr 1fr 60px 60px 60px; gap:.3rem; padding:.5rem; align-items:center; }
 .ghdr{ background:var(--bg3); font-family:'Press Start 2P'; font-size:.35rem; color:var(--pink3); }
-.drow2{ background:var(--bg2); margin-top:4px; border:1px solid var(--bg3); font-size: 1rem; }
-.dnum{ font-family:'Press Start 2P'; font-size:.6rem; color:var(--pink2); text-align:center; background:var(--bg3); padding:4px 0; }
-.dbadge{ font-family:'Press Start 2P'; font-size:.35rem; padding: 2px 4px; border-radius: 2px; }
-.dbadge.alt { background: var(--lavender); color: var(--bg); }
-.dbadge.mig { background: var(--mint); color: var(--bg); }
-.dbadge.baix { background: var(--yellow); color: var(--bg); }
+.drow2{ background:var(--bg2); margin-top:4px; border-bottom:1px solid var(--bg3); font-size: 0.9rem; }
 
 .toast{ position:fixed; bottom:2rem; left:50%; transform:translateX(-50%) translateY(100px); background:var(--bg3); color:var(--pink2); padding:1rem; border:3px solid var(--border); z-index:999; transition:0.3s; font-family:'Press Start 2P'; font-size:.4rem;}
 .toast.show{ transform:translateX(-50%) translateY(0); }
@@ -100,18 +95,32 @@ input[type="date"], textarea, select { width:100%; background:var(--cream); bord
 <div class="wrap">
   <div class="pbox card">
     <div class="ctitle"><i class="pixel icon-edit"></i> REGISTRE DEL DIA</div>
+    
     <div class="fg">
       <div class="fl">DATA</div>
       <input type="date" id="inputDate">
     </div>
+
     <div class="fg">
       <div class="fl">EMOCIONS</div>
       <textarea id="inputEmocions" placeholder="Com t'has sentit?"></textarea>
     </div>
+
     <div class="fg">
       <div class="fl">SÍMPTOMES</div>
       <textarea id="inputSimptomes" placeholder="Còlics, fatiga..."></textarea>
     </div>
+
+    <div class="fg">
+      <div class="fl">TIPUS DE FLUIX</div>
+      <div class="dopts">
+        <input type="radio" name="fluix" id="f-sec" value="Sec" class="dopt"><label for="f-sec">SEC</label>
+        <input type="radio" name="fluix" id="f-cremos" value="Cremós" class="dopt"><label for="f-cremos">CREMÓS</label>
+        <input type="radio" name="fluix" id="f-aquos" value="Acuós" class="dopt"><label for="f-aquos">AQUÓS</label>
+        <input type="radio" name="fluix" id="f-clara" value="Clara" class="dopt"><label for="f-clara">CLARA</label>
+      </div>
+    </div>
+
     <div class="fg">
       <div class="fl">DESIG SEXUAL</div>
       <div class="dopts">
@@ -121,6 +130,7 @@ input[type="date"], textarea, select { width:100%; background:var(--cream); bord
         <input type="radio" name="desig" id="d-alt" value="alt" class="dopt"><label for="d-alt">ALT</label>
       </div>
     </div>
+
     <div class="fg">
       <div class="fl">SANG</div>
       <div class="drow" id="dropsRow">
@@ -132,17 +142,14 @@ input[type="date"], textarea, select { width:100%; background:var(--cream); bord
         <span id="dropLabel" style="font-family:'Press Start 2P'; font-size:0.4rem; color:var(--text-mid)">CAP</span>
       </div>
     </div>
+
     <button id="btnSave" class="bsave" style="width:100%">GUARDAR DIA</button>
   </div>
 
   <div class="pbox-dark card">
     <div class="ctitle ctitle-dark">EL MEU DIARI</div>
-    <div style="display:flex; gap:10px; margin-bottom:1rem;">
-      <select id="cycleSelect"></select>
-      <button id="btnNewCycle" class="bnew">NOU CICLE</button>
-    </div>
     <div class="ghdr">
-      <span>DIA</span><span>EMO</span><span>SIMP</span><span>DESIG</span><span>SANG</span>
+      <span>DATA</span><span>EMO</span><span>SIMP</span><span>FLUIX</span><span>DESIG</span><span>SANG</span>
     </div>
     <div id="gridBody"></div>
   </div>
@@ -173,7 +180,7 @@ let user = null;
 let drops = 0;
 const labels = ['CAP','LLEUGER','M. LLEUGER','MODERAT','ABUNDANT','M. ABUNDANT'];
 
-// --- LÓGICA DE LAS GOTAS ---
+// Gotas Logic
 const dropBtns = document.querySelectorAll('.dbtn');
 const dropLabel = document.getElementById('dropLabel');
 
@@ -192,7 +199,7 @@ dropBtns.forEach(btn => {
     });
 });
 
-// --- AUTENTICACIÓN ---
+// Auth
 const btnAuth = document.getElementById('authBtn');
 const userInfo = document.getElementById('userInfo');
 
@@ -214,19 +221,13 @@ onAuthStateChanged(auth, async (u) => {
     }
 });
 
-// --- DATOS Y RENDER ---
 async function loadData() {
     if (!user) return;
     try {
         const snap = await getDoc(doc(db, "users", user.uid));
-        if (snap.exists()) {
-            render(snap.data());
-        } else {
-            document.getElementById('gridBody').innerHTML = '<div style="text-align:center; padding:2rem;">SENSE REGISTRES</div>';
-        }
-    } catch (e) {
-        console.error("Error cargando datos:", e);
-    }
+        if (snap.exists()) render(snap.data());
+        else document.getElementById('gridBody').innerHTML = '<div style="text-align:center; padding:2rem;">SENSE REGISTRES</div>';
+    } catch (e) { console.error(e); }
 }
 
 function render(data) {
@@ -236,78 +237,60 @@ function render(data) {
         return;
     }
 
-    // Ordenar por fecha (más reciente arriba)
     const sorted = Object.values(data.entries).sort((a, b) => new Date(b.date) - new Date(a.date));
     
     body.innerHTML = sorted.map(e => `
-        <div style="border-bottom:1px solid #444; padding:10px; display:grid; grid-template-columns: 100px 1fr 1fr 60px; gap:10px; align-items:center;">
-            <div style="font-family:'Press Start 2P'; font-size:8px; color:#f18dab;">${e.date}</div>
-            <div style="font-size:0.9rem;">${e.emocions || '-'}</div>
-            <div style="font-size:0.9rem;">${e.simptomes || '-'}</div>
-            <div style="text-align:right;">${'💧'.repeat(e.sang) || '0'}</div>
+        <div class="drow2">
+            <div style="font-family:'Press Start 2P'; font-size:6px; color:var(--pink2);">${e.date}</div>
+            <div style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${e.emocions || '-'}</div>
+            <div style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${e.simptomes || '-'}</div>
+            <div style="font-size:0.7rem; color:var(--mint);">${e.fluix || '-'}</div>
+            <div style="font-size:0.7rem; color:var(--lavender);">${e.desig || '-'}</div>
+            <div style="text-align:center;">${'💧'.repeat(e.sang) || '0'}</div>
         </div>
     `).join('');
 }
 
-// --- ACCIÓN DE GUARDAR ---
 document.getElementById('btnSave').addEventListener('click', async () => {
-    if (!user) {
-        alert("Inicia sessió amb Google primer!");
-        return;
-    }
+    if (!user) { alert("Inicia sessió!"); return; }
 
     const date = document.getElementById('inputDate').value;
     const emocions = document.getElementById('inputEmocions').value;
     const simptomes = document.getElementById('inputSimptomes').value;
     const desig = document.querySelector('input[name="desig"]:checked')?.value || 'nul';
+    const fluix = document.querySelector('input[name="fluix"]:checked')?.value || '-';
 
-    if (!date) {
-        alert("Posa una data!");
-        return;
-    }
+    if (!date) { alert("Posa una data!"); return; }
 
     try {
         const userRef = doc(db, "users", user.uid);
         const snap = await getDoc(userRef);
         let currentData = snap.exists() ? snap.data() : { entries: {} };
 
-        // Añadir la nueva entrada
         currentData.entries[date] = {
-            date,
-            emocions,
-            simptomes,
-            desig,
-            sang: drops // Aquí se guardan tus gotas
+            date, emocions, simptomes, desig, fluix, sang: drops
         };
 
         await setDoc(userRef, currentData);
-        
         showToast("GUARDAT! ✨");
         
-        // Limpiar formulario
+        // Reset form
         document.getElementById('inputEmocions').value = '';
         document.getElementById('inputSimptomes').value = '';
+        document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
         updateDropUI(0);
-        
-        // Refrescar tabla
         render(currentData);
         
-    } catch (error) {
-        console.error("Error al guardar:", error);
-        alert("Error al guardar en Firebase.");
-    }
+    } catch (error) { console.error(error); }
 });
 
 function showToast(m) {
     const t = document.getElementById('toast');
-    if (t) {
-        t.textContent = m;
-        t.classList.add('show');
-        setTimeout(() => t.classList.remove('show'), 3000);
-    }
+    t.textContent = m;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
 }
 
-// Fecha por defecto
 document.getElementById('inputDate').value = new Date().toISOString().split('T')[0];
 </script>
 </body>
