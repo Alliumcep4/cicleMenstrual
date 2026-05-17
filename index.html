@@ -1209,9 +1209,14 @@
           <div id="comfortItems"></div>
         </div>
 
-        <button id="btnSave" class="bsave" style="width:100%;margin-top:.6rem">
-          <i class="ti ti-check" aria-hidden="true"></i> GUARDAR DÍA
-        </button>
+        <div style="display:flex; gap:.6rem; margin-top:.6rem;">
+          <button id="btnDelete" class="bauth" style="flex:1; padding:.75rem .5rem; display:flex; align-items:center; justify-content:center; gap:.4rem;">
+            <i class="ti ti-trash" aria-hidden="true"></i> BORRAR
+          </button>
+          <button id="btnSave" class="bsave" style="flex:2.5; width:100%;">
+            <i class="ti ti-check" aria-hidden="true"></i> GUARDAR DÍA
+          </button>
+        </div>
       </div>
 
       <div class="pbox-dark card">
@@ -1745,15 +1750,64 @@
       ).join('');
     }
 
+    document.getElementById('btnDelete').addEventListener('click', async () => {
+      if (!user) { showToast('¡Inicia sesión primero!'); return; }
+      const date = document.getElementById('inputDate').value;
+      if (!date) { showToast('¡Pon una fecha!'); return; }
+
+      if (!allData.entries[date]) {
+        showToast('No hay registro para borrar.');
+        return;
+      }
+
+      if (!confirm('¿Seguro que quieres borrar el registro de este día?')) return;
+
+      delete allData.entries[date];
+
+      try {
+        await setDoc(doc(db, 'users', user.uid), allData);
+        showToast('¡REGISTRO BORRADO!');
+        clearForm();
+        render(allData);
+        updatePhaseUI();
+        updateMascot();
+        renderTodayPanel();
+        if (document.getElementById('tab-calendari').classList.contains('active')) renderCalendar();
+      } catch (e) { console.error(e); showToast('Error al borrar.'); }
+    });
+
+    function clearForm() {
+      document.getElementById('inputEmocions').value = '';
+      document.getElementById('inputSimptomes').value = '';
+      document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+      updateDropUI(0);
+      energia = 0;
+      energyBtns.forEach(b => b.classList.remove('active'));
+      energyLabelEl.textContent = ENERGY_LABELS[0];
+      selectedMood = '';
+      document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+      selectedZones.clear();
+      document.querySelectorAll('.zone-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('comfortBox').classList.remove('show');
+    }
+
     document.getElementById('btnSave').addEventListener('click', async () => {
       if (!user) { showToast('¡Inicia sesión primero!'); return; }
       const date = document.getElementById('inputDate').value;
       if (!date) { showToast('¡Pon una fecha!'); return; }
 
-      const emocions = document.getElementById('inputEmocions').value;
-      const simptomes = document.getElementById('inputSimptomes').value;
+      const emocions = document.getElementById('inputEmocions').value.trim();
+      const simptomes = document.getElementById('inputSimptomes').value.trim();
       const desig = document.querySelector('input[name="desig"]:checked')?.value || '-';
       const fluix = document.querySelector('input[name="fluix"]:checked')?.value || '-';
+      
+      const isEmpty = !emocions && !simptomes && desig === '-' && fluix === '-' && drops === 0 && !selectedMood && energia === 0 && selectedZones.size === 0;
+
+      if (isEmpty) {
+        showToast('¡Rellena algún campo para guardar!');
+        return;
+      }
+
       const phase = getPhaseFromDate(date, allData.entries);
 
       allData.entries[date] = {
@@ -1764,18 +1818,7 @@
       try {
         await setDoc(doc(db, 'users', user.uid), allData);
         showToast('¡GUARDADO! ✿');
-        document.getElementById('inputEmocions').value = '';
-        document.getElementById('inputSimptomes').value = '';
-        document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
-        updateDropUI(0);
-        energia = 0;
-        energyBtns.forEach(b => b.classList.remove('active'));
-        energyLabelEl.textContent = ENERGY_LABELS[0];
-        selectedMood = '';
-        document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
-        selectedZones.clear();
-        document.querySelectorAll('.zone-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById('comfortBox').classList.remove('show');
+        clearForm();
         render(allData);
         updatePhaseUI();
         updateMascot();
