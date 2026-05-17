@@ -1,297 +1,1799 @@
 <!DOCTYPE html>
 <html lang="ca">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La Meva Roda del Cicle</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixelarticons@1.8.1/css/pixelarticons.css">
-<style>
-:root {
-  --bg: #1a0a12; --bg2: #2a1020; --bg3: #3a1830; --panel: #fce4ec;
-  --panel2: #f8bbd0; --border: #f18dab; --pink: #dd6482; --pink2: #ff80c0;
-  --pink3: #ffb3d9; --red: #f07b96; --red2: #ff6688; --yellow: #ffe066;
-  --mint: #66ffcc; --lavender: #cc99ff; --cream: #fff5f9; --text-dark:#1a0a12;
-  --text-mid: #f589a0; --text-light:#fff5f9; --shadow: #7a354a;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{
-  font-family:'VT323',monospace; background:var(--bg); color:var(--text-light);
-  min-height:100vh; background-image: repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(255,77,166,.04) 31px,rgba(255,77,166,.04) 32px), repeating-linear-gradient(90deg,transparent,transparent 31px,rgba(255,77,166,.04) 31px,rgba(255,77,166,.04) 32px);
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>✿ Mi Rueda del Ciclo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.33.0/dist/tabler-icons.min.css">
+  <style>
+    :root {
+      --bg: #0c0818;
+      --bg2: #160e26;
+      --bg3: #1e1232;
+      --bg4: #261840;
 
-/* Auth Bar */
-.auth-bar { display: flex; justify-content: flex-end; align-items: center; padding: 1rem; max-width: 1100px; margin: 0 auto; gap: 1rem; }
-.user-info { font-family: 'Press Start 2P'; font-size: 0.45rem; color: var(--pink3); }
+      --pink: #e8447a;
+      --pink2: #ff6da0;
+      --pink3: #ffaac8;
+      --pink4: #ffd6e8;
 
-.pbox{ background:var(--panel); color:var(--text-dark); box-shadow:0 0 0 4px var(--border),0 0 0 8px var(--bg3),5px 5px 0 8px var(--shadow); }
-.pbox-dark{ background:var(--bg2); color:var(--text-light); box-shadow:0 0 0 4px var(--border),0 0 0 8px var(--bg),5px 5px 0 8px var(--shadow); }
+      --lav: #b06aff;
+      --mint: #4ef0c0;
+      --yellow: #ffdd44;
+      --red: #ff3a6e;
 
-header{text-align:center; padding:1rem 1rem 1.8rem;}
-.htitle{ font-family:'Press Start 2P'; font-size:clamp(.7rem,2.2vw,1.05rem); color:var(--pink2); text-shadow:3px 3px 0 var(--shadow); }
+      --panel: #f9e4ee;
+      --panel2: #f0c8da;
+      --border: #e8447a;
 
-.wrap{max-width:1100px; margin:0 auto; padding:0 1.5rem 5rem; display:grid; grid-template-columns:350px 1fr; gap:2rem;}
-@media(max-width:800px){.wrap{grid-template-columns:1fr;}}
-.card{padding:1.6rem;}
-.ctitle{ font-family:'Press Start 2P'; font-size:.6rem; color:var(--border); margin-bottom:1.3rem; padding-bottom:.8rem; border-bottom:4px solid var(--panel2); display:flex; gap:.7rem; align-items:center; }
-.ctitle-dark{border-bottom-color:var(--bg3); color:var(--pink2);}
+      --shadow: #2a0818;
+      --shadow2: #3d1228;
 
-/* Form */
-.fg{margin-bottom:1.1rem;}
-.fl{ font-family:'Press Start 2P'; font-size:.5rem; color:var(--text-mid); margin-bottom:.4rem; }
-input[type="date"], textarea, select { width:100%; background:var(--cream); border:0; box-shadow:inset 0 0 0 3px var(--border); padding:.6rem; font-family:'VT323'; font-size:1.2rem; outline:none; }
+      --text-dark: #1a0820;
+      --text-mid: #a05070;
+      --text-muted: #c490a8;
+      --text-light: #f9e4ee;
 
-.dopts{display:flex; gap:.5rem; flex-wrap:wrap;}
-.dopt{display:none;}
-.dopt+label{ padding:.4rem .7rem; background:var(--cream); box-shadow:0 0 0 3px var(--border); cursor:pointer; font-family:'Press Start 2P'; font-size:.45rem; color:var(--text-mid); }
-.dopt:checked+label{ background:var(--pink); color:white; }
+      --phase-col: var(--pink2);
 
-/* Gotas */
-.drow{display:flex; gap:.6rem; align-items:center; flex-wrap:wrap;}
-.dbtn{ background:none; border:none; cursor:pointer; padding:4px; transition:transform .1s; }
-.dbtn:hover{ transform:scale(1.2); }
-.drop-svg{ width:22px; height:28px; opacity:.2; transition:opacity .1s; }
-.dbtn.active .drop-svg{ opacity:1; }
+      --px-border: 2px solid var(--border);
+      --px-shadow: 4px 4px 0 var(--shadow);
+      --px-shadow-sm: 3px 3px 0 var(--shadow);
+    }
 
-.bsave, .bnew, .bauth{ 
-    padding:.8rem; background:var(--pink); color:white; border:0; box-shadow:0 0 0 3px var(--border), 4px 4px 0 var(--shadow); 
-    font-family:'Press Start 2P'; font-size:.5rem; cursor:pointer; 
-}
-.bauth { background: var(--lavender); color: var(--bg); padding: .5rem .8rem; }
+    .phase-winter {
+      --phase-col: #7ab4ff
+    }
 
-/* Grid */
-.ghdr, .drow2{ display:grid; grid-template-columns:80px 1fr 1fr 60px 60px 60px; gap:.3rem; padding:.5rem; align-items:center; }
-.ghdr{ background:var(--bg3); font-family:'Press Start 2P'; font-size:.35rem; color:var(--pink3); }
-.drow2{ background:var(--bg2); margin-top:4px; border-bottom:1px solid var(--bg3); font-size: 0.9rem; }
+    .phase-spring {
+      --phase-col: #44ffb0
+    }
 
-.toast{ position:fixed; bottom:2rem; left:50%; transform:translateX(-50%) translateY(100px); background:var(--bg3); color:var(--pink2); padding:1rem; border:3px solid var(--border); z-index:999; transition:0.3s; font-family:'Press Start 2P'; font-size:.4rem;}
-.toast.show{ transform:translateX(-50%) translateY(0); }
-</style>
+    .phase-summer {
+      --phase-col: #ffdd44
+    }
+
+    .phase-autumn {
+      --phase-col: #ff8844
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: 'VT323', monospace;
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse 120% 50% at 50% -5%, rgba(120, 30, 80, 0.35) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 30% at 80% 100%, rgba(60, 10, 80, 0.2) 0%, transparent 50%);
+      color: var(--text-light);
+      min-height: 100vh;
+    }
+
+    /* ── PIXEL BOX ── */
+    .pbox {
+      background: var(--panel);
+      color: var(--text-dark);
+      border: var(--px-border);
+      box-shadow: var(--px-shadow);
+    }
+
+    .pbox-dark {
+      background: var(--bg2);
+      color: var(--text-light);
+      border: var(--px-border);
+      box-shadow: var(--px-shadow);
+    }
+
+    /* ── AUTH BAR ── */
+    .auth-bar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: .6rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      gap: .75rem;
+    }
+
+    .user-info {
+      font-family: 'Press Start 2P';
+      font-size: .45rem;
+      color: var(--pink3);
+      letter-spacing: .05em;
+    }
+
+    .bauth {
+      background: var(--bg3);
+      color: var(--pink3);
+      padding: .5rem .9rem;
+      border: var(--px-border);
+      box-shadow: var(--px-shadow-sm);
+      font-family: 'Press Start 2P';
+      font-size: .42rem;
+      cursor: pointer;
+      transition: background .15s, color .15s, transform .1s;
+      letter-spacing: .04em;
+    }
+
+    .bauth:hover {
+      background: var(--pink);
+      color: #fff;
+      transform: translateY(-1px)
+    }
+
+    .bauth:active {
+      transform: translateY(1px);
+      box-shadow: 2px 2px 0 var(--shadow)
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: .5rem 1.5rem 1.2rem;
+      text-align: center
+    }
+
+    .htitle {
+      font-family: 'Press Start 2P';
+      font-size: clamp(.7rem, 2.2vw, 1.1rem);
+      color: var(--pink2);
+      letter-spacing: .08em;
+      text-shadow: 3px 3px 0 var(--shadow2), 0 0 40px rgba(232, 68, 122, 0.25);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ── MASCOT ── */
+    .mascot-box {
+      background: var(--bg3);
+      border: var(--px-border);
+      box-shadow: var(--px-shadow-sm);
+      padding: .9rem 1.2rem;
+      text-align: center;
+      min-width: 130px;
+      cursor: pointer;
+    }
+
+    .mascot-sprite {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: .4rem;
+      color: var(--pink2);
+      line-height: 1;
+      animation: float-up 3s ease-in-out infinite;
+    }
+
+    .mascot-name {
+      font-family: 'Press Start 2P';
+      font-size: .4rem;
+      color: var(--pink3);
+      letter-spacing: .06em;
+      margin-bottom: .3rem;
+    }
+
+    .mascot-msg {
+      font-size: 1.05rem;
+      color: var(--pink3);
+      line-height: 1.3;
+      max-width: 110px;
+    }
+
+    /* ── PHASE PANEL ── */
+    .phase-panel {
+      background: var(--bg3);
+      border: 2px solid var(--phase-col);
+      box-shadow: 4px 4px 0 var(--shadow);
+      padding: .85rem 1.3rem;
+      text-align: center;
+      min-width: 150px;
+      transition: border-color .4s, box-shadow .4s;
+    }
+
+    .phase-icon {
+      font-size: 1.8rem;
+      display: block;
+      margin-bottom: .35rem;
+      color: var(--phase-col);
+      line-height: 1;
+      transition: color .4s;
+    }
+
+    .phase-name {
+      font-family: 'Press Start 2P';
+      font-size: .45rem;
+      color: var(--phase-col);
+      letter-spacing: .05em;
+      margin-bottom: .25rem;
+      transition: color .4s;
+    }
+
+    .phase-label {
+      font-size: 1rem;
+      color: var(--pink3)
+    }
+
+    /* ── TABS ── */
+    .tabs {
+      display: flex;
+      max-width: 1100px;
+      margin: .5rem auto .75rem;
+      padding: 0 1.5rem;
+      gap: .4rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      font-family: 'Press Start 2P';
+      font-size: .38rem;
+      padding: .55rem .8rem;
+      background: var(--bg3);
+      color: var(--text-muted);
+      border: var(--px-border);
+      box-shadow: 3px 3px 0 var(--shadow);
+      cursor: pointer;
+      flex: 1;
+      min-width: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      letter-spacing: .04em;
+      transition: background .15s, color .15s, transform .1s, box-shadow .1s;
+    }
+
+    .tab-btn .ti {
+      font-size: 1.1rem
+    }
+
+    .tab-btn:hover:not(.active) {
+      background: var(--bg4);
+      color: var(--pink3);
+      transform: translateY(-1px);
+    }
+
+    .tab-btn.active {
+      background: var(--pink);
+      color: #fff;
+      box-shadow: 3px 3px 0 var(--shadow2);
+      transform: translateY(-1px);
+    }
+
+    .tab-panel {
+      display: none
+    }
+
+    .tab-panel.active {
+      display: block
+    }
+
+    /* ── LAYOUT ── */
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem 5rem
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 1.5rem
+    }
+
+    @media (max-width: 800px) {
+      .two-col {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .card {
+      padding: 1.4rem 1.5rem
+    }
+
+    /* ── CARD TITLES ── */
+    .ctitle {
+      font-family: 'Press Start 2P';
+      font-size: .55rem;
+      color: var(--text-mid);
+      letter-spacing: .05em;
+      margin-bottom: 1.2rem;
+      padding-bottom: .65rem;
+      border-bottom: 3px solid var(--panel2);
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+    }
+
+    .ctitle .ti {
+      font-size: 1.1rem;
+      flex-shrink: 0
+    }
+
+    .ctitle-dark {
+      color: var(--pink2);
+      border-bottom-color: var(--bg4);
+    }
+
+    /* ── FORM ── */
+    .fg {
+      margin-bottom: 1rem
+    }
+
+    .fl {
+      font-family: 'Press Start 2P';
+      font-size: .4rem;
+      color: var(--text-mid);
+      letter-spacing: .04em;
+      margin-bottom: .4rem;
+      display: block;
+    }
+
+    input[type="date"],
+    textarea,
+    select {
+      width: 100%;
+      background: #fff8fb;
+      border: var(--px-border);
+      padding: .5rem .65rem;
+      font-family: 'VT323';
+      font-size: 1.15rem;
+      outline: none;
+      color: var(--text-dark);
+      transition: border-color .15s;
+    }
+
+    input[type="date"]:focus,
+    textarea:focus {
+      border-color: var(--pink2);
+      box-shadow: 0 0 0 2px rgba(232, 68, 122, .15)
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 58px
+    }
+
+    /* ── MOOD GRID ── */
+    .mood-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: .4rem;
+    }
+
+    .mood-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .2rem;
+      padding: .5rem .25rem;
+      background: #fff8fb;
+      border: var(--px-border);
+      cursor: pointer;
+      transition: transform .12s, border-color .12s, background .12s;
+    }
+
+    .mood-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--pink2)
+    }
+
+    .mood-btn.active {
+      background: var(--panel2);
+      border-color: var(--pink);
+      box-shadow: 0 0 0 2px var(--pink2);
+      transform: translateY(-2px);
+    }
+
+    .mood-emoji {
+      font-size: 1.35rem;
+      line-height: 1;
+      color: var(--pink)
+    }
+
+    .mood-btn.active .mood-emoji {
+      color: var(--text-dark)
+    }
+
+    .mood-label {
+      font-family: 'Press Start 2P';
+      font-size: .27rem;
+      color: var(--text-mid);
+      letter-spacing: .03em
+    }
+
+    /* ── RADIO OPTS ── */
+    .dopts {
+      display: flex;
+      gap: .4rem;
+      flex-wrap: wrap
+    }
+
+    .dopt {
+      display: none
+    }
+
+    .dopt+label {
+      padding: .38rem .65rem;
+      background: #fff8fb;
+      border: var(--px-border);
+      cursor: pointer;
+      font-family: 'Press Start 2P';
+      font-size: .36rem;
+      color: var(--text-mid);
+      letter-spacing: .03em;
+      transition: background .12s, color .12s;
+    }
+
+    .dopt+label:hover {
+      background: var(--panel2)
+    }
+
+    .dopt:checked+label {
+      background: var(--pink);
+      color: #fff;
+      border-color: var(--pink)
+    }
+
+    /* ── BLOOD DROPS ── */
+    .drow {
+      display: flex;
+      gap: .5rem;
+      align-items: center;
+      flex-wrap: wrap
+    }
+
+    .dbtn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 3px;
+      transition: transform .12s, filter .12s;
+    }
+
+    .dbtn:hover {
+      transform: scale(1.22)
+    }
+
+    .dbtn.active {
+      filter: drop-shadow(0 0 3px rgba(255, 58, 110, .5))
+    }
+
+    .drop-svg {
+      width: 18px;
+      height: 24px;
+      opacity: .18;
+      transition: opacity .12s
+    }
+
+    .dbtn.active .drop-svg {
+      opacity: 1
+    }
+
+    #dropLabel {
+      font-family: 'Press Start 2P';
+      font-size: .35rem;
+      color: var(--text-muted);
+      letter-spacing: .04em;
+    }
+
+    /* ── ENERGY ── */
+    .energy-row {
+      display: flex;
+      gap: .45rem;
+      align-items: center
+    }
+
+    .ebtn {
+      background: none;
+      border: 0;
+      cursor: pointer;
+      font-size: 1.3rem;
+      opacity: .2;
+      transition: opacity .15s, transform .15s;
+      color: var(--yellow);
+      line-height: 1;
+      padding: 2px;
+    }
+
+    .ebtn.active {
+      opacity: 1;
+      transform: scale(1.12)
+    }
+
+    #energyLabel {
+      font-family: 'Press Start 2P';
+      font-size: .33rem;
+      color: var(--text-muted);
+      letter-spacing: .04em;
+      margin-left: .4rem;
+    }
+
+    /* ── BODY ZONES ── */
+    .body-zones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem
+    }
+
+    .zone-btn {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .35rem .6rem;
+      background: #fff8fb;
+      border: var(--px-border);
+      cursor: pointer;
+      font-family: 'Press Start 2P';
+      font-size: .31rem;
+      color: var(--text-mid);
+      letter-spacing: .03em;
+      transition: background .12s, border-color .12s, transform .12s;
+    }
+
+    .zone-btn:hover {
+      transform: translateY(-1px);
+      border-color: var(--pink2)
+    }
+
+    .zone-btn.active {
+      background: var(--red);
+      color: #fff;
+      border-color: var(--red);
+    }
+
+    .zone-icon {
+      font-size: 1rem;
+      line-height: 1;
+      color: var(--pink)
+    }
+
+    .zone-btn.active .zone-icon {
+      color: #fff
+    }
+
+    /* ── COMFORT BOX ── */
+    .comfort-box {
+      background: var(--bg2);
+      border: 1px solid var(--pink3);
+      padding: .8rem 1rem;
+      margin-top: .75rem;
+      display: none;
+    }
+
+    .comfort-box.show {
+      display: block
+    }
+
+    .comfort-title {
+      font-family: 'Press Start 2P';
+      font-size: .35rem;
+      color: var(--pink2);
+      letter-spacing: .04em;
+      margin-bottom: .5rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .comfort-title .ti {
+      font-size: .95rem
+    }
+
+    .comfort-item {
+      font-size: .95rem;
+      color: var(--pink3);
+      padding: .18rem 0;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      line-height: 1.3;
+    }
+
+    .comfort-item .ti {
+      font-size: 1rem;
+      color: var(--pink2);
+      flex-shrink: 0
+    }
+
+    /* ── SAVE BUTTON ── */
+    .bsave {
+      padding: .75rem 1rem;
+      background: var(--pink);
+      color: #fff;
+      border: 2px solid #ff80b0;
+      box-shadow: 4px 4px 0 var(--shadow2);
+      font-family: 'Press Start 2P';
+      font-size: .44rem;
+      letter-spacing: .05em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .55rem;
+      transition: transform .12s, box-shadow .12s, background .12s;
+    }
+
+    .bsave .ti {
+      font-size: 1.1rem
+    }
+
+    .bsave:hover {
+      background: var(--pink2);
+      transform: translateY(-2px);
+      box-shadow: 4px 6px 0 var(--shadow2)
+    }
+
+    .bsave:active {
+      transform: translateY(1px);
+      box-shadow: 2px 2px 0 var(--shadow2)
+    }
+
+    /* ── CALENDAR ── */
+    .cal-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .cal-nav-btn {
+      background: var(--bg3);
+      border: var(--px-border);
+      box-shadow: var(--px-shadow-sm);
+      color: var(--pink2);
+      cursor: pointer;
+      padding: .38rem .7rem;
+      font-size: 1.1rem;
+      line-height: 1;
+      transition: background .12s, transform .1s;
+    }
+
+    .cal-nav-btn:hover {
+      background: var(--pink);
+      color: #fff;
+      transform: translateY(-1px)
+    }
+
+    .cal-month {
+      font-family: 'Press Start 2P';
+      font-size: .52rem;
+      color: var(--pink2);
+      letter-spacing: .05em;
+    }
+
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 3px
+    }
+
+    .cal-hdr {
+      font-family: 'Press Start 2P';
+      font-size: .3rem;
+      color: var(--text-muted);
+      text-align: center;
+      padding: .28rem 0;
+      letter-spacing: .04em;
+    }
+
+    .cal-day {
+      min-height: 38px;
+      background: var(--bg3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 4px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color .12s, background .12s;
+    }
+
+    .cal-day:hover {
+      border-color: var(--pink3);
+      background: var(--bg4)
+    }
+
+    .cal-day.today {
+      border-color: var(--pink2)
+    }
+
+    .cal-day.has-entry {
+      background: var(--bg4)
+    }
+
+    .cal-day.selected {
+      border-color: var(--yellow)
+    }
+
+    .cal-num {
+      font-family: 'Press Start 2P';
+      font-size: .3rem;
+      color: var(--text-muted)
+    }
+
+    .cal-dot {
+      width: 5px;
+      height: 5px;
+      margin-top: 2px;
+      background: var(--red)
+    }
+
+    .cal-icons {
+      font-size: .9rem;
+      line-height: 1;
+      color: var(--pink2)
+    }
+
+    .cal-empty {
+      background: transparent;
+      min-height: 38px
+    }
+
+    /* ── DIARY ── */
+    .ghdr,
+    .drow2 {
+      display: grid;
+      grid-template-columns: 90px 1fr 1fr 65px 65px 55px;
+      gap: .3rem;
+      padding: .5rem .6rem;
+      align-items: center;
+    }
+
+    .ghdr {
+      background: var(--bg3);
+      font-family: 'Press Start 2P';
+      font-size: .3rem;
+      color: var(--text-muted);
+      letter-spacing: .04em;
+    }
+
+    .drow2 {
+      background: var(--bg2);
+      margin-top: 3px;
+      border-bottom: 1px solid var(--bg3);
+      font-size: .95rem;
+      transition: background .12s;
+    }
+
+    .drow2:hover {
+      background: var(--bg3)
+    }
+
+    /* ── MOBILE DIARY ── */
+    .mob-summary {
+      display: none
+    }
+
+    .mob-details {
+      display: none
+    }
+
+    @media (max-width: 800px) {
+      .ghdr {
+        display: none
+      }
+
+      .drow2 {
+        display: block;
+        margin-top: 5px;
+        border-bottom: 2px solid var(--bg3)
+      }
+
+      .drow2 .dc {
+        display: none
+      }
+
+      .mob-summary {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        padding: .65rem .65rem;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .mob-date {
+        font-family: 'Press Start 2P';
+        font-size: 6px;
+        color: var(--pink2);
+        white-space: nowrap
+      }
+
+      .mob-preview {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 1rem;
+        opacity: .8
+      }
+
+      .mob-toggle {
+        font-size: .5rem;
+        color: var(--text-muted);
+        transition: transform .2s;
+        font-family: 'Press Start 2P'
+      }
+
+      .drow2.open .mob-toggle {
+        transform: rotate(180deg)
+      }
+
+      .mob-details {
+        flex-direction: column;
+        gap: .5rem;
+        padding: .65rem .65rem;
+        border-top: 1px solid var(--bg3);
+      }
+
+      .drow2.open .mob-details {
+        display: flex
+      }
+
+      .mob-field {
+        display: flex;
+        gap: .5rem;
+        align-items: flex-start;
+        font-size: .95rem
+      }
+
+      .mob-label {
+        font-family: 'Press Start 2P';
+        font-size: 5px;
+        color: var(--text-muted);
+        min-width: 38px;
+        padding-top: 3px;
+        flex-shrink: 0
+      }
+    }
+
+    /* ── STATS ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: .9rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .stat-card {
+      background: var(--bg3);
+      border: var(--px-border);
+      box-shadow: var(--px-shadow-sm);
+      padding: 1rem .9rem;
+      text-align: center;
+      transition: transform .15s, box-shadow .15s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 4px 6px 0 var(--shadow)
+    }
+
+    .stat-val {
+      font-family: 'Press Start 2P';
+      font-size: .8rem;
+      color: var(--pink2);
+      display: block;
+      margin-bottom: .3rem;
+    }
+
+    .stat-icon {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: .3rem;
+      color: var(--pink2);
+      line-height: 1
+    }
+
+    .stat-label {
+      font-size: .85rem;
+      color: var(--text-muted)
+    }
+
+    /* ── ACHIEVEMENTS ── */
+    .ach-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: .65rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .ach-card {
+      background: var(--bg3);
+      border: var(--px-border);
+      box-shadow: var(--px-shadow-sm);
+      padding: .75rem .7rem;
+      text-align: center;
+      opacity: .28;
+      transition: opacity .3s, transform .2s, border-color .2s, box-shadow .2s;
+    }
+
+    .ach-card.unlocked {
+      opacity: 1;
+      border-color: var(--yellow);
+      box-shadow: 4px 4px 0 var(--shadow);
+    }
+
+    .ach-card.unlocked:hover {
+      transform: translateY(-2px);
+      box-shadow: 4px 6px 0 var(--shadow)
+    }
+
+    .ach-icon {
+      font-size: 1.6rem;
+      display: block;
+      margin-bottom: .25rem;
+      color: var(--text-muted);
+      line-height: 1
+    }
+
+    .ach-card.unlocked .ach-icon {
+      color: var(--yellow)
+    }
+
+    .ach-name {
+      font-family: 'Press Start 2P';
+      font-size: .28rem;
+      color: var(--yellow);
+      margin-bottom: .2rem;
+      letter-spacing: .04em
+    }
+
+    .ach-desc {
+      font-size: .78rem;
+      color: var(--text-muted)
+    }
+
+    /* ── INSIGHTS ── */
+    .insight-list {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem
+    }
+
+    .insight-card {
+      background: var(--bg3);
+      border: 1px solid var(--bg4);
+      border-left: 3px solid var(--pink);
+      padding: .8rem 1rem;
+      display: flex;
+      gap: .75rem;
+      align-items: flex-start;
+      transition: border-left-color .2s, transform .15s;
+    }
+
+    .insight-card:hover {
+      transform: translateX(3px);
+      border-left-color: var(--pink2)
+    }
+
+    .insight-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      color: var(--pink2);
+      line-height: 1
+    }
+
+    .insight-text {
+      font-size: .95rem;
+      color: var(--pink3);
+      line-height: 1.35
+    }
+
+    /* ── TODAY PANEL ── */
+    .today-field {
+      margin-bottom: .6rem;
+      font-size: .95rem;
+      color: var(--pink3);
+      line-height: 1.4;
+      display: flex;
+      align-items: baseline;
+      gap: .5rem;
+      flex-wrap: wrap;
+    }
+
+    .today-label {
+      font-family: 'Press Start 2P';
+      font-size: .33rem;
+      color: var(--pink2);
+      display: block;
+      flex-shrink: 0;
+      letter-spacing: .04em;
+    }
+
+    .today-mood-icon {
+      font-size: 1.1rem;
+      color: var(--pink2);
+      line-height: 1
+    }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(120px);
+      background: var(--bg3);
+      color: var(--pink2);
+      padding: .85rem 1.4rem;
+      border: var(--px-border);
+      box-shadow: 4px 4px 0 var(--shadow);
+      z-index: 999;
+      transition: transform .3s cubic-bezier(.34, 1.56, .64, 1);
+      font-family: 'Press Start 2P';
+      font-size: .38rem;
+      letter-spacing: .05em;
+      text-align: center;
+      max-width: 90vw;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0)
+    }
+
+    /* ── KEYFRAMES ── */
+    @keyframes float-up {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-5px)
+      }
+    }
+
+    /* ── CAL DETAIL ── */
+    #calDetail {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: var(--bg3);
+      border: 1px solid var(--bg4);
+      border-left: 3px solid var(--pink);
+      display: none;
+    }
+  </style>
 </head>
+
 <body>
 
-<svg width="0" height="0" style="position:absolute">
-  <symbol id="dropsym" viewBox="0 0 8 11">
-    <rect x="3" y="0" width="2" height="1" fill="currentColor"/>
-    <rect x="2" y="1" width="4" height="1" fill="currentColor"/>
-    <rect x="1" y="2" width="6" height="2" fill="currentColor"/>
-    <rect x="0" y="4" width="8" height="4" fill="currentColor"/>
-    <rect x="1" y="8" width="6" height="2" fill="currentColor"/>
-    <rect x="2" y="10" width="4" height="1" fill="currentColor"/>
-  </symbol>
-</svg>
+  <svg width="0" height="0" style="position:absolute">
+    <symbol id="dropsym" viewBox="0 0 8 11">
+      <rect x="3" y="0" width="2" height="1" fill="currentColor" />
+      <rect x="2" y="1" width="4" height="1" fill="currentColor" />
+      <rect x="1" y="2" width="6" height="2" fill="currentColor" />
+      <rect x="0" y="4" width="8" height="4" fill="currentColor" />
+      <rect x="1" y="8" width="6" height="2" fill="currentColor" />
+      <rect x="2" y="10" width="4" height="1" fill="currentColor" />
+    </symbol>
+  </svg>
 
-<div class="auth-bar">
-  <div id="userInfo" class="user-info"></div>
-  <button id="authBtn" class="bauth">CARREGANT...</button>
-</div>
-
-<header>
-  <div class="htitle">LA MEVA RODA DEL CICLE</div>
-  <div style="color:var(--pink3); margin-top:5px; font-size:1.2rem;">✦ seguiment mensual ✦</div>
-</header>
-
-<div class="wrap">
-  <div class="pbox card">
-    <div class="ctitle"><i class="pixel icon-edit"></i> REGISTRE DEL DIA</div>
-    
-    <div class="fg">
-      <div class="fl">DATA</div>
-      <input type="date" id="inputDate">
-    </div>
-
-    <div class="fg">
-      <div class="fl">EMOCIONS</div>
-      <textarea id="inputEmocions" placeholder="Com t'has sentit?"></textarea>
-    </div>
-
-    <div class="fg">
-      <div class="fl">SÍMPTOMES</div>
-      <textarea id="inputSimptomes" placeholder="Còlics, fatiga..."></textarea>
-    </div>
-
-    <div class="fg">
-      <div class="fl">TIPUS DE FLUIX</div>
-      <div class="dopts">
-        <input type="radio" name="fluix" id="f-sec" value="Sec" class="dopt"><label for="f-sec">SEC</label>
-        <input type="radio" name="fluix" id="f-cremos" value="Cremós" class="dopt"><label for="f-cremos">CREMÓS</label>
-        <input type="radio" name="fluix" id="f-aquos" value="Acuós" class="dopt"><label for="f-aquos">AQUÓS</label>
-        <input type="radio" name="fluix" id="f-clara" value="Clara" class="dopt"><label for="f-clara">CLARA</label>
-      </div>
-    </div>
-
-    <div class="fg">
-      <div class="fl">DESIG SEXUAL</div>
-      <div class="dopts">
-        <input type="radio" name="desig" id="d-nul" value="nul" class="dopt"><label for="d-nul">NUL</label>
-        <input type="radio" name="desig" id="d-baix" value="baix" class="dopt"><label for="d-baix">BAIX</label>
-        <input type="radio" name="desig" id="d-mig" value="mig" class="dopt"><label for="d-mig">MIG</label>
-        <input type="radio" name="desig" id="d-alt" value="alt" class="dopt"><label for="d-alt">ALT</label>
-      </div>
-    </div>
-
-    <div class="fg">
-      <div class="fl">SANG</div>
-      <div class="drow" id="dropsRow">
-        <button class="dbtn" data-val="1"><svg class="drop-svg"><use href="#dropsym" style="color:#e53060"/></svg></button>
-        <button class="dbtn" data-val="2"><svg class="drop-svg"><use href="#dropsym" style="color:#e53060"/></svg></button>
-        <button class="dbtn" data-val="3"><svg class="drop-svg"><use href="#dropsym" style="color:#e53060"/></svg></button>
-        <button class="dbtn" data-val="4"><svg class="drop-svg"><use href="#dropsym" style="color:#e53060"/></svg></button>
-        <button class="dbtn" data-val="5"><svg class="drop-svg"><use href="#dropsym" style="color:#e53060"/></svg></button>
-        <span id="dropLabel" style="font-family:'Press Start 2P'; font-size:0.4rem; color:var(--text-mid)">CAP</span>
-      </div>
-    </div>
-
-    <button id="btnSave" class="bsave" style="width:100%">GUARDAR DIA</button>
+  <div class="auth-bar">
+    <div id="userInfo" class="user-info"></div>
+    <button id="authBtn" class="bauth">CARGANDO…</button>
   </div>
 
-  <div class="pbox-dark card">
-    <div class="ctitle ctitle-dark">EL MEU DIARI</div>
-    <div class="ghdr">
-      <span>DATA</span><span>EMO</span><span>SIMP</span><span>FLUIX</span><span>DESIG</span><span>SANG</span>
+  <header>
+    <div class="htitle">✿ MI RUEDA DEL CICLO ✿</div>
+    <div class="hero">
+      <div class="mascot-box" id="mascotBox">
+        <span class="mascot-sprite" id="mascotSprite"><i class="ti ti-sparkles" aria-hidden="true"></i></span>
+        <div class="mascot-name">LUNA</div>
+        <div class="mascot-msg" id="mascotMsg">¡Hola! ¿Cómo estás hoy?</div>
+      </div>
+      <div class="phase-panel" id="phasePanel">
+        <span class="phase-icon" id="phaseIcon"><i class="ti ti-circle-dashed" aria-hidden="true"></i></span>
+        <div class="phase-name" id="phaseName">SIN DATOS</div>
+        <div class="phase-label" id="phaseLabel">Registra tu ciclo ✿</div>
+      </div>
     </div>
-    <div id="gridBody"></div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="registre"><i class="ti ti-pencil" aria-hidden="true"></i> REGISTRO</button>
+    <button class="tab-btn" data-tab="calendari"><i class="ti ti-calendar" aria-hidden="true"></i> CALENDARIO</button>
+    <button class="tab-btn" data-tab="diari"><i class="ti ti-book" aria-hidden="true"></i> DIARIO</button>
+    <button class="tab-btn" data-tab="insights"><i class="ti ti-sparkles" aria-hidden="true"></i> INSIGHTS</button>
   </div>
-</div>
 
-<div id="toast" class="toast"></div>
+  <!-- REGISTRO -->
+  <div class="tab-panel active wrap" id="tab-registre">
+    <div class="two-col">
+      <div class="pbox card">
+        <div class="ctitle"><i class="ti ti-pencil" aria-hidden="true"></i> REGISTRO DEL DÍA</div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-const firebaseConfig = {
-    apiKey: "AIzaSyBM_nkWZWTrGxdvpLD94XNzD4rLmOa2rI0",
-    authDomain: "rodacicle.firebaseapp.com",
-    projectId: "rodacicle",
-    storageBucket: "rodacicle.firebasestorage.app",
-    messagingSenderId: "984220546287",
-    appId: "1:984220546287:web:d16642d1ae78dfb0b1571a"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
-
-let user = null;
-let drops = 0;
-const labels = ['CAP','LLEUGER','M. LLEUGER','MODERAT','ABUNDANT','M. ABUNDANT'];
-
-// Gotas Logic
-const dropBtns = document.querySelectorAll('.dbtn');
-const dropLabel = document.getElementById('dropLabel');
-
-function updateDropUI(val) {
-    drops = val;
-    dropBtns.forEach(b => {
-        b.classList.toggle('active', parseInt(b.dataset.val) <= drops);
-    });
-    if (dropLabel) dropLabel.textContent = labels[drops] || 'CAP';
-}
-
-dropBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const val = parseInt(btn.dataset.val);
-        updateDropUI(drops === val ? 0 : val);
-    });
-});
-
-// Auth
-const btnAuth = document.getElementById('authBtn');
-const userInfo = document.getElementById('userInfo');
-
-btnAuth.addEventListener('click', () => {
-    if (user) signOut(auth);
-    else signInWithPopup(auth, provider).catch(err => console.error("Error Login:", err));
-});
-
-onAuthStateChanged(auth, async (u) => {
-    user = u;
-    if (u) {
-        btnAuth.textContent = "SORTIR";
-        if (userInfo) userInfo.textContent = u.displayName.toUpperCase();
-        await loadData();
-    } else {
-        btnAuth.textContent = "LOGIN GOOGLE";
-        if (userInfo) userInfo.textContent = "";
-        document.getElementById('gridBody').innerHTML = '<div style="text-align:center; padding:2rem;">INICIA SESSIÓ PER VEURE DADES</div>';
-    }
-});
-
-async function loadData() {
-    if (!user) return;
-    try {
-        const snap = await getDoc(doc(db, "users", user.uid));
-        if (snap.exists()) render(snap.data());
-        else document.getElementById('gridBody').innerHTML = '<div style="text-align:center; padding:2rem;">SENSE REGISTRES</div>';
-    } catch (e) { console.error(e); }
-}
-
-function render(data) {
-    const body = document.getElementById('gridBody');
-    if (!data.entries || Object.keys(data.entries).length === 0) {
-        body.innerHTML = '<div style="text-align:center; padding:2rem;">SENSE REGISTRES</div>';
-        return;
-    }
-
-    const sorted = Object.values(data.entries).sort((a, b) => new Date(b.date) - new Date(a.date));
-    
-    body.innerHTML = sorted.map(e => `
-        <div class="drow2">
-            <div style="font-family:'Press Start 2P'; font-size:6px; color:var(--pink2);">${e.date}</div>
-            <div style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${e.emocions || '-'}</div>
-            <div style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${e.simptomes || '-'}</div>
-            <div style="font-size:0.7rem; color:var(--mint);">${e.fluix || '-'}</div>
-            <div style="font-size:0.7rem; color:var(--lavender);">${e.desig || '-'}</div>
-            <div style="text-align:center;">${'💧'.repeat(e.sang) || '0'}</div>
+        <div class="fg">
+          <span class="fl">FECHA</span>
+          <input type="date" id="inputDate">
         </div>
-    `).join('');
-}
 
-document.getElementById('btnSave').addEventListener('click', async () => {
-    if (!user) { alert("Inicia sessió!"); return; }
+        <div class="fg">
+          <span class="fl">¿CÓMO TE SIENTES? ✿</span>
+          <div class="mood-grid" id="moodGrid"></div>
+        </div>
 
-    const date = document.getElementById('inputDate').value;
-    const emocions = document.getElementById('inputEmocions').value;
-    const simptomes = document.getElementById('inputSimptomes').value;
-    const desig = document.querySelector('input[name="desig"]:checked')?.value || 'nul';
-    const fluix = document.querySelector('input[name="fluix"]:checked')?.value || '-';
+        <div class="fg">
+          <span class="fl">NOTAS</span>
+          <textarea id="inputEmocions" placeholder="¿Cómo te has sentido hoy…"></textarea>
+        </div>
 
-    if (!date) { alert("Posa una data!"); return; }
+        <div class="fg">
+          <span class="fl">SÍNTOMAS</span>
+          <textarea id="inputSimptomes" placeholder="Cólicos, fatiga, dolor de cabeza…"></textarea>
+        </div>
 
-    try {
-        const userRef = doc(db, "users", user.uid);
-        const snap = await getDoc(userRef);
-        let currentData = snap.exists() ? snap.data() : { entries: {} };
+        <div class="fg">
+          <span class="fl">¿DÓNDE TE DUELE?</span>
+          <div class="body-zones" id="bodyZones"></div>
+        </div>
 
-        currentData.entries[date] = {
-            date, emocions, simptomes, desig, fluix, sang: drops
-        };
+        <div class="fg">
+          <span class="fl">ENERGÍA</span>
+          <div class="energy-row">
+            <button class="ebtn" data-val="1" aria-label="Energía baja"><i class="ti ti-bolt"
+                aria-hidden="true"></i></button>
+            <button class="ebtn" data-val="2" aria-label="Energía media"><i class="ti ti-bolt"
+                aria-hidden="true"></i></button>
+            <button class="ebtn" data-val="3" aria-label="Energía alta"><i class="ti ti-bolt"
+                aria-hidden="true"></i></button>
+            <span id="energyLabel">SIN DATOS</span>
+          </div>
+        </div>
 
-        await setDoc(userRef, currentData);
-        showToast("GUARDAT! ✨");
-        
-        // Reset form
+        <div class="fg">
+          <span class="fl">TIPO DE FLUJO</span>
+          <div class="dopts">
+            <input type="radio" name="fluix" id="f-sec" value="Seco" class="dopt"><label for="f-sec">SECO</label>
+            <input type="radio" name="fluix" id="f-cremos" value="Cremoso" class="dopt"><label
+              for="f-cremos">CREMOSO</label>
+            <input type="radio" name="fluix" id="f-aquos" value="Acuoso" class="dopt"><label
+              for="f-aquos">ACUOSO</label>
+            <input type="radio" name="fluix" id="f-clara" value="Clara" class="dopt"><label for="f-clara">CLARA</label>
+          </div>
+        </div>
+
+        <div class="fg">
+          <span class="fl">DESEO</span>
+          <div class="dopts">
+            <input type="radio" name="desig" id="d-nul" value="nulo" class="dopt"><label for="d-nul">NULO</label>
+            <input type="radio" name="desig" id="d-baix" value="bajo" class="dopt"><label for="d-baix">BAJO</label>
+            <input type="radio" name="desig" id="d-mig" value="medio" class="dopt"><label for="d-mig">MEDIO</label>
+            <input type="radio" name="desig" id="d-alt" value="alto" class="dopt"><label for="d-alt">ALTO</label>
+          </div>
+        </div>
+
+        <div class="fg">
+          <span class="fl">SANGRE</span>
+          <div class="drow" id="dropsRow">
+            <button class="dbtn" data-val="1" aria-label="1 gota"><svg class="drop-svg">
+                <use href="#dropsym" style="color:#ff3a6e" />
+              </svg></button>
+            <button class="dbtn" data-val="2" aria-label="2 gotas"><svg class="drop-svg">
+                <use href="#dropsym" style="color:#ff3a6e" />
+              </svg></button>
+            <button class="dbtn" data-val="3" aria-label="3 gotas"><svg class="drop-svg">
+                <use href="#dropsym" style="color:#ff3a6e" />
+              </svg></button>
+            <button class="dbtn" data-val="4" aria-label="4 gotas"><svg class="drop-svg">
+                <use href="#dropsym" style="color:#ff3a6e" />
+              </svg></button>
+            <button class="dbtn" data-val="5" aria-label="5 gotas"><svg class="drop-svg">
+                <use href="#dropsym" style="color:#ff3a6e" />
+              </svg></button>
+            <span id="dropLabel">NADA</span>
+          </div>
+        </div>
+
+        <div id="comfortBox" class="comfort-box">
+          <div class="comfort-title"><i class="ti ti-heart" aria-hidden="true"></i> CUIDADOS PARA TI</div>
+          <div id="comfortItems"></div>
+        </div>
+
+        <button id="btnSave" class="bsave" style="width:100%;margin-top:.6rem">
+          <i class="ti ti-check" aria-hidden="true"></i> GUARDAR DÍA
+        </button>
+      </div>
+
+      <div class="pbox-dark card">
+        <div class="ctitle ctitle-dark"><i class="ti ti-moon" aria-hidden="true"></i> HOY</div>
+        <div id="todayPanel" style="font-size:.95rem;color:var(--text-muted);line-height:1.6">
+          Guarda un registro para ver tu estado de hoy ✿
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALENDARIO -->
+  <div class="tab-panel wrap" id="tab-calendari">
+    <div class="pbox-dark card">
+      <div class="ctitle ctitle-dark"><i class="ti ti-calendar" aria-hidden="true"></i> CALENDARIO</div>
+      <div class="cal-nav">
+        <button class="cal-nav-btn" id="calPrev" aria-label="Mes anterior"><i class="ti ti-chevron-left"
+            aria-hidden="true"></i></button>
+        <span class="cal-month" id="calMonthLabel"></span>
+        <button class="cal-nav-btn" id="calNext" aria-label="Mes siguiente"><i class="ti ti-chevron-right"
+            aria-hidden="true"></i></button>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+      <div id="calDetail"></div>
+    </div>
+  </div>
+
+  <!-- DIARIO -->
+  <div class="tab-panel wrap" id="tab-diari">
+    <div class="pbox-dark card">
+      <div class="ctitle ctitle-dark"><i class="ti ti-book" aria-hidden="true"></i> MI DIARIO</div>
+      <div class="ghdr">
+        <span>FECHA</span><span>ESTADO</span><span>SÍNTOMAS</span><span>FLUJO</span><span>DESEO</span><span>SANGRE</span>
+      </div>
+      <div id="gridBody"></div>
+    </div>
+  </div>
+
+  <!-- INSIGHTS -->
+  <div class="tab-panel wrap" id="tab-insights">
+    <div style="display:grid;gap:1.4rem">
+      <div class="pbox-dark card">
+        <div class="ctitle ctitle-dark"><i class="ti ti-chart-bar" aria-hidden="true"></i> ESTADÍSTICAS</div>
+        <div class="stats-grid" id="statsGrid"></div>
+      </div>
+      <div class="pbox-dark card">
+        <div class="ctitle ctitle-dark"><i class="ti ti-trophy" aria-hidden="true"></i> LOGROS</div>
+        <div class="ach-grid" id="achGrid"></div>
+      </div>
+      <div class="pbox-dark card">
+        <div class="ctitle ctitle-dark"><i class="ti ti-chart-dots" aria-hidden="true"></i> PATRONES</div>
+        <div class="insight-list" id="insightList"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { getAuth, signInWithRedirect, getRedirectResult, GoogleAuthProvider, onAuthStateChanged, signOut }
+      from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBM_nkWZWTrGxdvpLD94XNzD4rLmOa2rI0",
+      authDomain: "rodacicle.firebaseapp.com",
+      projectId: "rodacicle",
+      storageBucket: "rodacicle.firebasestorage.app",
+      messagingSenderId: "984220546287",
+      appId: "1:984220546287:web:d16642d1ae78dfb0b1571a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const ico = (name) => `<i class="ti ti-${name}" aria-hidden="true"></i>`;
+
+    let user = null, drops = 0, energia = 0, selectedMood = '';
+    let selectedZones = new Set();
+    let calMonth = new Date();
+    let allData = { entries: {} };
+
+    const SANG_LABELS = ['NADA', 'LEVE', 'MUY LEVE', 'MODERADO', 'ABUNDANTE', 'MUY ABUNDANTE'];
+    const ENERGY_LABELS = ['SIN DATOS', 'BAJA', 'MEDIA', 'ALTA'];
+    const MONTHS = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    const DAYS = ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá', 'Do'];
+
+    const MOODS = [
+      { id: 'alegre', emoji: ico('mood-happy'), label: 'ALEGRE' },
+      { id: 'trista', emoji: ico('mood-sad'), label: 'TRISTE' },
+      { id: 'irritable', emoji: ico('mood-angry'), label: 'IRRITABLE' },
+      { id: 'cansada', emoji: ico('zzz'), label: 'CANSADA' },
+      { id: 'ansiosa', emoji: ico('mood-nervous'), label: 'ANSIOSA' },
+      { id: 'tendra', emoji: ico('heart'), label: 'TERNURA' },
+      { id: 'energetica', emoji: ico('bolt'), label: 'ENERGÍA' },
+      { id: 'tranquila', emoji: ico('mood-smile'), label: 'TRANQUILA' },
+    ];
+    const MOOD_MAP = Object.fromEntries(MOODS.map(m => [m.id, m]));
+
+    const ZONES = [
+      { id: 'ventre', icon: ico('circle'), label: 'VIENTRE' },
+      { id: 'cap', icon: ico('brain'), label: 'CABEZA' },
+      { id: 'esquena', icon: ico('arrow-up'), label: 'ESPALDA' },
+      { id: 'pits', icon: ico('heart'), label: 'PECHO' },
+      { id: 'maluc', icon: ico('bone'), label: 'CADERAS' },
+    ];
+    const ZONE_MAP = Object.fromEntries(ZONES.map(z => [z.id, z]));
+
+    const PHASES = {
+      menstruacio: { name: 'MENSTRUACIÓN', label: 'Invierno interior', icon: ico('moon'), col: '#7ab4ff', css: 'phase-winter' },
+      foliclular: { name: 'FOLICULAR', label: 'Renacimiento', icon: ico('plant'), col: '#44ffb0', css: 'phase-spring' },
+      ovulacio: { name: 'OVULACIÓN', label: 'Energía plena', icon: ico('sun'), col: '#ffdd44', css: 'phase-summer' },
+      lutia: { name: 'LÚTEA', label: 'Recogimiento', icon: ico('cloud'), col: '#ff8844', css: 'phase-autumn' },
+    };
+
+    const MASCOT = {
+      menstruacio: { sprite: ico('moon'), msg: 'Cuídate mucho. Eres fuerte.', col: '#7ab4ff' },
+      foliclular: { sprite: ico('plant'), msg: '¡La energía te llama!', col: '#44ffb0' },
+      ovulacio: { sprite: ico('sun'), msg: '¡Brillante como nunca!', col: '#ffdd44' },
+      lutia: { sprite: ico('cloud'), msg: 'Tiempo de recogerte.', col: '#ff8844' },
+      tired: { sprite: ico('zzz'), msg: 'Descansa. Te lo mereces.', col: '#b06aff' },
+      happy: { sprite: ico('flower'), msg: '¡Qué bien te sientes!', col: '#ffaac8' },
+      sad: { sprite: ico('cloud-rain'), msg: 'Aquí estoy contigo.', col: '#7ab4ff' },
+      anxious: { sprite: ico('wind'), msg: 'Respira. Todo pasa.', col: '#ff8844' },
+      default: { sprite: ico('sparkles'), msg: '¡Hola! ¿Cómo estás hoy?', col: '#ffaac8' },
+    };
+
+    const COMFORT = {
+      ventre: [`${ico('thermometer')} Compresa caliente en el vientre`, `${ico('coffee')} Infusión de jengibre o menta`, `${ico('activity')} Estiramientos de pelvis`],
+      cap: [`${ico('droplet')} Bebe un vaso de agua`, `${ico('zzz')} Descansa en un lugar tranquilo`, `${ico('leaf')} Aceite de lavanda en las sienes`],
+      esquena: [`${ico('droplet')} Baño caliente relajante`, `${ico('circle')} Cojín lumbar`, `${ico('walk')} Camina suave 10 minutos`],
+      pits: [`${ico('heart')} Ropa cómoda y suave`, `${ico('coffee')} Infusión de raspberry leaf`, `${ico('hand')} Automasaje suave`],
+      maluc: [`${ico('activity')} Estiramientos de caderas`, `${ico('flame')} Calor local si hay tensión`, `${ico('zzz')} Duerme de lado con cojín`],
+      cansada: [`${ico('coffee')} Descanso de 20 minutos`, `${ico('music')} Música tranquila`, `${ico('heart')} Un poco de chocolate negro`],
+      ansiosa: [`${ico('wind')} Respira: 4 dentro, 4 fuera, 4 dentro`, `${ico('pencil')} Escribe cómo te sientes`, `${ico('leaf')} Infusión de valeriana`],
+      irritable: [`${ico('heart')} Tu cuerpo trabaja duro, es normal`, `${ico('droplet')} Ducha caliente`, `${ico('music')} Tu playlist favorita`],
+      trista: [`${ico('heart')} Permítete sentirlo`, `${ico('phone')} Habla con alguien de confianza`, `${ico('plant')} Cuídate como cuidarías a una amiga`],
+    };
+
+    const ACHIEVEMENTS = [
+      { id: 'first', icon: ico('plant'), name: 'PRIMER PASO', desc: '1er registro!', check: d => count(d) >= 1 },
+      { id: 'week', icon: ico('star'), name: 'UNA SEMANA', desc: '7 registros', check: d => count(d) >= 7 },
+      { id: 'month', icon: ico('calendar'), name: 'UN MES', desc: '30 registros', check: d => count(d) >= 30 },
+      { id: 'survivor', icon: ico('shield'), name: 'SURVIVOR', desc: 'Registrada la menstruación', check: d => vals(d).some(e => e.sang > 0) },
+      { id: 'emotional', icon: ico('heart'), name: 'EMOCIONAL', desc: '5 registros con estado', check: d => vals(d).filter(e => e.mood).length >= 5 },
+      { id: 'hydration', icon: ico('droplet'), name: 'HYDRATION', desc: 'Mencionada hidratación', check: d => vals(d).some(e => /agua|hidrat/i.test((e.simptomes || '') + (e.emocions || ''))) },
+      { id: 'pms', icon: ico('medal'), name: 'PMS SURVIVOR', desc: 'Registrada fase lútea', check: d => vals(d).some(e => e.phase === 'lutia') },
+      { id: 'consistent', icon: ico('flame'), name: 'CONSISTENTE', desc: '3 días seguidos', check: d => hasConsecDays(d, 3) },
+    ];
+
+    const count = d => Object.keys(d.entries || {}).length;
+    const vals = d => Object.values(d.entries || {});
+
+    function initMoodGrid() {
+      const g = document.getElementById('moodGrid');
+      g.innerHTML = MOODS.map(m => `
+    <button class="mood-btn" data-mood="${m.id}">
+      <span class="mood-emoji">${m.emoji}</span>
+      <span class="mood-label">${m.label}</span>
+    </button>`).join('');
+      g.querySelectorAll('.mood-btn').forEach(btn => btn.addEventListener('click', () => {
+        selectedMood = selectedMood === btn.dataset.mood ? '' : btn.dataset.mood;
+        g.querySelectorAll('.mood-btn').forEach(b => b.classList.toggle('active', b.dataset.mood === selectedMood));
+        updateMascotFromMood();
+        updateComfort();
+      }));
+    }
+
+    function initBodyZones() {
+      const c = document.getElementById('bodyZones');
+      c.innerHTML = ZONES.map(z => `
+    <button class="zone-btn" data-zone="${z.id}">
+      <span class="zone-icon">${z.icon}</span> ${z.label}
+    </button>`).join('');
+      c.querySelectorAll('.zone-btn').forEach(btn => btn.addEventListener('click', () => {
+        selectedZones.has(btn.dataset.zone) ? selectedZones.delete(btn.dataset.zone) : selectedZones.add(btn.dataset.zone);
+        btn.classList.toggle('active', selectedZones.has(btn.dataset.zone));
+        updateComfort();
+      }));
+    }
+
+    const energyBtns = document.querySelectorAll('.ebtn');
+    const energyLabelEl = document.getElementById('energyLabel');
+    energyBtns.forEach(btn => btn.addEventListener('click', () => {
+      const v = parseInt(btn.dataset.val);
+      energia = energia === v ? 0 : v;
+      energyBtns.forEach(b => b.classList.toggle('active', parseInt(b.dataset.val) <= energia));
+      energyLabelEl.textContent = ENERGY_LABELS[energia];
+    }));
+
+    const dropBtns = document.querySelectorAll('.dbtn');
+    const dropLabelEl = document.getElementById('dropLabel');
+    function updateDropUI(v) {
+      drops = v;
+      dropBtns.forEach(b => b.classList.toggle('active', parseInt(b.dataset.val) <= drops));
+      dropLabelEl.textContent = SANG_LABELS[drops] || 'NADA';
+    }
+    dropBtns.forEach(btn => btn.addEventListener('click', () => {
+      const v = parseInt(btn.dataset.val);
+      updateDropUI(drops === v ? 0 : v);
+    }));
+
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      if (btn.dataset.tab === 'calendari') renderCalendar();
+      if (btn.dataset.tab === 'insights') renderInsights();
+    }));
+
+    document.getElementById('calPrev').addEventListener('click', () => {
+      calMonth = new Date(calMonth.getFullYear(), calMonth.getMonth() - 1, 1);
+      renderCalendar();
+      document.getElementById('calDetail').style.display = 'none';
+    });
+    document.getElementById('calNext').addEventListener('click', () => {
+      calMonth = new Date(calMonth.getFullYear(), calMonth.getMonth() + 1, 1);
+      renderCalendar();
+      document.getElementById('calDetail').style.display = 'none';
+    });
+
+    const btnAuth = document.getElementById('authBtn');
+    const userInfoEl = document.getElementById('userInfo');
+    btnAuth.addEventListener('click', () => user ? signOut(auth) : signInWithRedirect(auth, provider));
+    getRedirectResult(auth).catch(err => console.error('Login error:', err));
+
+    onAuthStateChanged(auth, async u => {
+      user = u;
+      if (u) {
+        btnAuth.textContent = 'SALIR';
+        if (userInfoEl) userInfoEl.textContent = u.displayName.toUpperCase();
+        await loadData();
+      } else {
+        btnAuth.textContent = 'LOGIN GOOGLE';
+        if (userInfoEl) userInfoEl.textContent = '';
+        allData = { entries: {} };
+        document.getElementById('gridBody').innerHTML = '<div style="text-align:center;padding:2rem;font-size:.95rem;color:var(--text-muted)">Inicia sesión para ver tus datos</div>';
+        updateMascot('default');
+      }
+    });
+
+    async function loadData() {
+      if (!user) return;
+      try {
+        const snap = await getDoc(doc(db, 'users', user.uid));
+        allData = snap.exists() ? snap.data() : { entries: {} };
+        if (!allData.entries) allData.entries = {};
+        render(allData);
+        updatePhaseUI();
+        updateMascot();
+        renderTodayPanel();
+      } catch (e) { console.error(e); }
+    }
+
+    function getPhaseFromDate(targetDate, entries) {
+      const td = new Date(targetDate);
+      const sangEntries = vals({ entries }).filter(e => e.sang > 0 && new Date(e.date) <= td)
+        .sort((a, b) => new Date(b.date) - new Date(a.date));
+      if (!sangEntries.length) return null;
+      const days = Math.floor((td - new Date(sangEntries[0].date)) / 86400000);
+      if (days <= 5) return 'menstruacio';
+      if (days <= 13) return 'foliclular';
+      if (days <= 16) return 'ovulacio';
+      if (days <= 30) return 'lutia';
+      return null;
+    }
+
+    function getCurrentPhase() {
+      return getPhaseFromDate(new Date().toISOString().split('T')[0], allData.entries);
+    }
+
+    function updatePhaseUI() {
+      const phase = getCurrentPhase();
+      document.body.className = '';
+      const panel = document.getElementById('phasePanel');
+      if (phase && PHASES[phase]) {
+        const p = PHASES[phase];
+        document.getElementById('phaseIcon').innerHTML = p.icon;
+        document.getElementById('phaseName').textContent = p.name;
+        document.getElementById('phaseLabel').textContent = p.label;
+        panel.style.setProperty('--phase-col', p.col);
+        document.body.classList.add(p.css);
+      } else {
+        document.getElementById('phaseIcon').innerHTML = ico('circle-dashed');
+        document.getElementById('phaseName').textContent = 'SIN DATOS';
+        document.getElementById('phaseLabel').textContent = 'Registra tu ciclo ✿';
+        panel.style.removeProperty('--phase-col');
+      }
+    }
+
+    function updateMascot(override) {
+      const phase = getCurrentPhase();
+      const s = MASCOT[override] || MASCOT[phase] || MASCOT.default;
+      document.getElementById('mascotSprite').innerHTML = s.sprite;
+      document.getElementById('mascotMsg').textContent = s.msg;
+      document.getElementById('mascotBox').style.borderColor = s.col;
+      document.getElementById('mascotBox').style.boxShadow = `4px 4px 0 var(--shadow)`;
+      document.getElementById('mascotSprite').style.color = s.col;
+    }
+
+    function updateMascotFromMood() {
+      const map = { cansada: 'tired', alegre: 'happy', energetica: 'happy', trista: 'sad', ansiosa: 'anxious' };
+      updateMascot(map[selectedMood] || null);
+    }
+
+    function updateComfort() {
+      const tips = new Set();
+      selectedZones.forEach(z => (COMFORT[z] || []).forEach(t => tips.add(t)));
+      if (selectedMood && COMFORT[selectedMood]) COMFORT[selectedMood].forEach(t => tips.add(t));
+      const box = document.getElementById('comfortBox');
+      if (!tips.size) { box.classList.remove('show'); return; }
+      document.getElementById('comfortItems').innerHTML =
+        [...tips].slice(0, 5).map(t => `<div class="comfort-item">${t}</div>`).join('');
+      box.classList.add('show');
+    }
+
+    function renderTodayPanel() {
+      const today = new Date().toISOString().split('T')[0];
+      const e = allData.entries[today];
+      const panel = document.getElementById('todayPanel');
+      if (!e) {
+        panel.innerHTML = '<span style="font-size:.95rem;color:var(--text-muted)">Aún no has registrado hoy ✿</span>';
+        return;
+      }
+      const mood = MOOD_MAP[e.mood];
+      const zonesText = (e.zones || []).map(z => {
+        const zd = ZONE_MAP[z];
+        return zd ? `${zd.icon} ${zd.label}` : '';
+      }).filter(Boolean).join(', ');
+      panel.innerHTML = `
+    ${mood ? `<div class="today-field"><span class="today-label">ESTADO</span><span class="today-mood-icon">${mood.emoji}</span> ${mood.label}</div>` : ''}
+    ${e.emocions ? `<div class="today-field"><span class="today-label">NOTAS</span>${e.emocions}</div>` : ''}
+    ${e.simptomes ? `<div class="today-field"><span class="today-label">SÍNTOMAS</span>${e.simptomes}</div>` : ''}
+    ${zonesText ? `<div class="today-field"><span class="today-label">DOLOR</span>${zonesText}</div>` : ''}
+    ${e.fluix && e.fluix !== '-' ? `<div class="today-field"><span class="today-label">FLUJO</span><span style="color:var(--mint)">${e.fluix}</span></div>` : ''}
+    ${e.sang ? `<div class="today-field"><span class="today-label">SANGRE</span>${renderDrops(e.sang)}</div>` : ''}
+    ${e.energia ? `<div class="today-field"><span class="today-label">ENERGÍA</span>${renderBolts(e.energia)}</div>` : ''}
+  `;
+    }
+
+    function renderDrops(n) {
+      return Array(n).fill(`<svg width="10" height="14" viewBox="0 0 8 11" style="display:inline-block;margin-right:2px"><use href="#dropsym" style="color:#ff3a6e"/></svg>`).join('');
+    }
+    function renderBolts(n) {
+      return Array(n).fill(`<i class="ti ti-bolt" style="color:var(--yellow)"></i>`).join('');
+    }
+
+    function render(data) {
+      const body = document.getElementById('gridBody');
+      const entries = data.entries || {};
+      if (!Object.keys(entries).length) {
+        body.innerHTML = '<div style="text-align:center;padding:2rem;font-size:.95rem;color:var(--text-muted)">SIN REGISTROS</div>';
+        return;
+      }
+      const sorted = Object.values(entries).sort((a, b) => new Date(b.date) - new Date(a.date));
+      body.innerHTML = sorted.map(e => {
+        const mood = MOOD_MAP[e.mood];
+        const zonesIcons = (e.zones || []).map(z => ZONE_MAP[z]?.icon || '').join('');
+        return `
+      <div class="drow2">
+        <div class="dc" style="font-family:'Press Start 2P';font-size:6px;color:var(--pink2)">${e.date}</div>
+        <div class="dc" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${mood ? mood.emoji + ' ' : ''}${e.emocions || '-'}</div>
+        <div class="dc" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e.simptomes || '-'}</div>
+        <div class="dc" style="font-size:.85rem;color:var(--mint)">${e.fluix || '-'}</div>
+        <div class="dc" style="font-size:.85rem;color:var(--lav)">${e.desig || '-'}</div>
+        <div class="dc" style="text-align:center">${renderDrops(e.sang || 0) || '—'}</div>
+        <div class="mob-summary">
+          <span class="mob-date">${e.date}</span>
+          <span class="mob-preview">${mood ? mood.emoji + ' ' : ''}${e.emocions || e.simptomes || '-'}</span>
+          <span>${renderDrops(e.sang || 0)}</span>
+          <span class="mob-toggle">▼</span>
+        </div>
+        <div class="mob-details">
+          <div class="mob-field"><span class="mob-label">ESTADO</span><span>${mood ? mood.emoji + ' ' + mood.label : '-'}</span></div>
+          <div class="mob-field"><span class="mob-label">NOTAS</span><span>${e.emocions || '-'}</span></div>
+          <div class="mob-field"><span class="mob-label">SIMP</span><span>${e.simptomes || '-'}${zonesIcons ? ' ' + zonesIcons : ''}</span></div>
+          <div class="mob-field"><span class="mob-label">FLUJO</span><span style="color:var(--mint)">${e.fluix || '-'}</span></div>
+          <div class="mob-field"><span class="mob-label">DESEO</span><span style="color:var(--lav)">${e.desig || '-'}</span></div>
+          <div class="mob-field"><span class="mob-label">SANGRE</span><span>${renderDrops(e.sang || 0) || '—'}</span></div>
+          ${e.energia ? `<div class="mob-field"><span class="mob-label">ENERGÍA</span><span>${renderBolts(e.energia)}</span></div>` : ''}
+        </div>
+      </div>`;
+      }).join('');
+      body.querySelectorAll('.mob-summary').forEach(s =>
+        s.addEventListener('click', () => s.closest('.drow2').classList.toggle('open')));
+    }
+
+    function renderCalendar() {
+      const y = calMonth.getFullYear(), m = calMonth.getMonth();
+      document.getElementById('calMonthLabel').textContent = `${MONTHS[m]} ${y}`;
+      const today = new Date().toISOString().split('T')[0];
+      let html = DAYS.map(d => `<div class="cal-hdr">${d}</div>`).join('');
+      let offset = new Date(y, m, 1).getDay() - 1;
+      if (offset < 0) offset = 6;
+      for (let i = 0; i < offset; i++) html += `<div class="cal-empty"></div>`;
+      const days = new Date(y, m + 1, 0).getDate();
+      for (let d = 1; d <= days; d++) {
+        const ds = `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+        const e = allData.entries[ds];
+        html += `<div class="cal-day ${e ? 'has-entry' : ''} ${ds === today ? 'today' : ''}" data-date="${ds}">
+      <span class="cal-num">${d}</span>
+      ${e && e.sang > 0 ? '<div class="cal-dot"></div>' : ''}
+      <div class="cal-icons">${e && e.mood ? (MOOD_MAP[e.mood]?.emoji || '') : ''}</div>
+    </div>`;
+      }
+      const grid = document.getElementById('calGrid');
+      grid.innerHTML = html;
+      grid.querySelectorAll('.cal-day[data-date]').forEach(cell =>
+        cell.addEventListener('click', () => {
+          grid.querySelectorAll('.cal-day').forEach(c => c.classList.remove('selected'));
+          cell.classList.add('selected');
+          showCalDetail(cell.dataset.date);
+        }));
+    }
+
+    function showCalDetail(date) {
+      const det = document.getElementById('calDetail');
+      const e = allData.entries[date];
+      det.style.display = 'block';
+      if (!e) {
+        det.innerHTML = `<span style="font-family:'Press Start 2P';font-size:.35rem;color:var(--pink3)">${date}</span>
+      <p style="margin-top:.5rem;font-size:.95rem;color:var(--text-muted)">Sin registro.
+      <button onclick="document.querySelector('[data-tab=registre]').click();document.getElementById('inputDate').value='${date}'"
+        style="background:var(--pink);color:white;border:0;padding:.35rem .7rem;cursor:pointer;font-family:'Press Start 2P';font-size:.3rem;margin-left:.5rem;box-shadow:3px 3px 0 var(--shadow)">REGISTRAR</button></p>`;
+        return;
+      }
+      const mood = MOOD_MAP[e.mood];
+      const zones = (e.zones || []).map(z => { const zd = ZONE_MAP[z]; return zd ? `${zd.icon} ${zd.label}` : ''; }).filter(Boolean).join(', ');
+      det.innerHTML = `
+    <div style="font-family:'Press Start 2P';font-size:.38rem;color:var(--pink2);margin-bottom:.6rem">${date}</div>
+    ${mood ? `<div style="font-size:1.1rem;margin-bottom:.35rem;display:flex;align-items:center;gap:.5rem;color:var(--pink2)">${mood.emoji}<span style="font-size:.9rem;color:var(--pink3)">${mood.label}</span></div>` : ''}
+    ${e.emocions ? `<div style="font-size:.9rem;color:var(--text-light);margin-bottom:.25rem">${ico('message')} ${e.emocions}</div>` : ''}
+    ${e.simptomes ? `<div style="font-size:.9rem;color:var(--pink3);margin-bottom:.25rem">${ico('stethoscope')} ${e.simptomes}</div>` : ''}
+    ${zones ? `<div style="font-size:.9rem;color:var(--pink3);margin-bottom:.25rem">${ico('map-pin')} ${zones}</div>` : ''}
+    <div style="display:flex;gap:.9rem;flex-wrap:wrap;margin-top:.35rem;align-items:center">
+      ${e.fluix && e.fluix !== '-' ? `<span style="color:var(--mint);font-size:.88rem">${ico('droplet')} ${e.fluix}</span>` : ''}
+      ${e.desig && e.desig !== '-' ? `<span style="color:var(--lav);font-size:.88rem">${ico('heart')} ${e.desig}</span>` : ''}
+      ${e.sang ? `<span style="color:var(--red);font-size:.88rem">${renderDrops(e.sang)} sangre</span>` : ''}
+      ${e.energia ? `<span style="color:var(--yellow);font-size:.88rem">${renderBolts(e.energia)}</span>` : ''}
+    </div>`;
+    }
+
+    function hasConsecDays(data, n) {
+      const dates = Object.keys(data.entries || {}).sort();
+      if (dates.length < n) return false;
+      for (let i = 0; i <= dates.length - n; i++) {
+        let c = 1;
+        for (let j = i + 1; j < dates.length && c < n; j++) {
+          if ((new Date(dates[j]) - new Date(dates[j - 1])) / 86400000 === 1) c++;
+          else break;
+        }
+        if (c >= n) return true;
+      }
+      return false;
+    }
+
+    function renderInsights() {
+      const entries = vals(allData);
+      const sangDays = entries.filter(e => e.sang > 0).length;
+      const moodCounts = {};
+      entries.forEach(e => { if (e.mood) moodCounts[e.mood] = (moodCounts[e.mood] || 0) + 1; });
+      const topMoodEntry = Object.entries(moodCounts).sort((a, b) => b[1] - a[1])[0];
+      const periodStarts = entries.filter(e => e.sang > 0).map(e => new Date(e.date)).sort((a, b) => a - b);
+      let avgCycle = '-';
+      if (periodStarts.length >= 2) {
+        const diffs = [];
+        for (let i = 1; i < periodStarts.length; i++) {
+          const d = Math.round((periodStarts[i] - periodStarts[i - 1]) / 86400000);
+          if (d > 5) diffs.push(d);
+        }
+        if (diffs.length) avgCycle = Math.round(diffs.reduce((a, b) => a + b, 0) / diffs.length) + 'd';
+      }
+
+      document.getElementById('statsGrid').innerHTML = `
+    <div class="stat-card"><span class="stat-val">${entries.length}</span><div class="stat-label">DÍAS REGISTRADOS</div></div>
+    <div class="stat-card"><span class="stat-val">${sangDays}</span><div class="stat-label">DÍAS CON SANGRE</div></div>
+    <div class="stat-card"><span class="stat-val">${avgCycle}</span><div class="stat-label">CICLO MEDIO</div></div>
+    <div class="stat-card"><span class="stat-icon">${topMoodEntry ? (MOOD_MAP[topMoodEntry[0]]?.emoji || ico('help')) : ico('help')}</span><div class="stat-label">ESTADO + FRECUENTE</div></div>`;
+
+      document.getElementById('achGrid').innerHTML = ACHIEVEMENTS.map(a => {
+        const ok = a.check(allData);
+        return `<div class="ach-card ${ok ? 'unlocked' : ''}">
+      <span class="ach-icon">${a.icon}</span>
+      <div class="ach-name">${a.name}</div>
+      <div class="ach-desc">${a.desc}</div>
+      ${ok ? `<div style="font-family:'Press Start 2P';font-size:.27rem;color:var(--yellow);margin-top:.3rem">${ico('check')} LOGRADO</div>` : ''}
+    </div>`;
+      }).join('');
+
+      const insights = [];
+      if (!entries.length) {
+        document.getElementById('insightList').innerHTML =
+          `<div style="font-size:.95rem;color:var(--text-muted);padding:1rem">${ico('plant')} Registra unos días para descubrir tus patrones.</div>`;
+        return;
+      }
+      if (topMoodEntry) {
+        const m = MOOD_MAP[topMoodEntry[0]];
+        insights.push({ icon: m?.emoji || ico('heart'), text: `A menudo te sientes <strong>${m?.label || topMoodEntry[0]}</strong>. Tu cuerpo habla, y tú lo escuchas.` });
+      }
+      const enEntries = entries.filter(e => e.energia);
+      if (enEntries.length >= 3) {
+        const avg = enEntries.reduce((a, e) => a + e.energia, 0) / enEntries.length;
+        insights.push({
+          icon: ico('bolt'), text: avg < 1.5
+            ? 'Tu energía suele ser baja. Descansa y no te exijas tanto.'
+            : avg > 2.2 ? '¡Tienes mucha energía! Aprovéchala bien.'
+              : 'Tu energía es moderada. Escucha tu cuerpo cada día.'
+        });
+      }
+      if (sangDays >= 2) {
+        const avg = entries.filter(e => e.sang > 0).reduce((a, e) => a + e.sang, 0) / sangDays;
+        insights.push({
+          icon: ico('droplet'), text: avg >= 3
+            ? 'Tu flujo suele ser abundante. Prepara protección extra los primeros días.'
+            : 'Tu flujo es ligero o moderado. Cada cuerpo es único y perfecto.'
+        });
+      }
+      const phase = getCurrentPhase();
+      if (phase === 'menstruacio') insights.push({ icon: ico('moon'), text: 'Estás en tu invierno interior. Descansa, come bien y sé amable contigo misma.' });
+      if (phase === 'foliclular') insights.push({ icon: ico('plant'), text: 'La energía empieza a crecer. Buen momento para planificar y conectar contigo misma.' });
+      if (phase === 'ovulacio') insights.push({ icon: ico('sun'), text: 'Estás en tu fase de máxima energía. Gran momento para proyectos y conexiones sociales.' });
+      if (phase === 'lutia') insights.push({ icon: ico('cloud'), text: 'Tu cuerpo se prepara. Puede que te sientas más sensible o introspectiva. Es normal.' });
+      if (!insights.length) insights.push({ icon: ico('sparkles'), text: 'Continúa registrando para descubrir tus patrones únicos.' });
+
+      document.getElementById('insightList').innerHTML = insights.map(i =>
+        `<div class="insight-card"><span class="insight-icon">${i.icon}</span><div class="insight-text">${i.text}</div></div>`
+      ).join('');
+    }
+
+    document.getElementById('btnSave').addEventListener('click', async () => {
+      if (!user) { showToast('¡Inicia sesión primero!'); return; }
+      const date = document.getElementById('inputDate').value;
+      if (!date) { showToast('¡Pon una fecha!'); return; }
+
+      const emocions = document.getElementById('inputEmocions').value;
+      const simptomes = document.getElementById('inputSimptomes').value;
+      const desig = document.querySelector('input[name="desig"]:checked')?.value || '-';
+      const fluix = document.querySelector('input[name="fluix"]:checked')?.value || '-';
+      const phase = getPhaseFromDate(date, allData.entries);
+
+      allData.entries[date] = {
+        date, emocions, simptomes, desig, fluix, sang: drops,
+        mood: selectedMood, energia, zones: [...selectedZones], phase
+      };
+
+      try {
+        await setDoc(doc(db, 'users', user.uid), allData);
+        showToast('¡GUARDADO! ✿');
         document.getElementById('inputEmocions').value = '';
         document.getElementById('inputSimptomes').value = '';
         document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
         updateDropUI(0);
-        render(currentData);
-        
-    } catch (error) { console.error(error); }
-});
+        energia = 0;
+        energyBtns.forEach(b => b.classList.remove('active'));
+        energyLabelEl.textContent = ENERGY_LABELS[0];
+        selectedMood = '';
+        document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+        selectedZones.clear();
+        document.querySelectorAll('.zone-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById('comfortBox').classList.remove('show');
+        render(allData);
+        updatePhaseUI();
+        updateMascot();
+        renderTodayPanel();
+      } catch (e) { console.error(e); showToast('Error al guardar.'); }
+    });
 
-function showToast(m) {
-    const t = document.getElementById('toast');
-    t.textContent = m;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3000);
-}
+    function showToast(m) {
+      const t = document.getElementById('toast');
+      t.textContent = m;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2800);
+    }
 
-document.getElementById('inputDate').value = new Date().toISOString().split('T')[0];
-</script>
+    initMoodGrid();
+    initBodyZones();
+    document.getElementById('inputDate').value = new Date().toISOString().split('T')[0];
+  </script>
 </body>
+
 </html>
