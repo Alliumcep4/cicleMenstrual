@@ -39,7 +39,7 @@
       --text-light: #2d402d;
 
       --phase-col: var(--pink2);
-      
+
       --radius: 16px;
 
       --px-border: 2px solid var(--border);
@@ -306,7 +306,7 @@
       grid-template-columns: 1fr;
       gap: 1.5rem
     }
-    
+
     .form-grid {
       display: grid;
       gap: 1rem;
@@ -316,9 +316,11 @@
       .two-col {
         grid-template-columns: minmax(500px, 1.4fr) 1fr;
       }
+
       .form-grid {
         grid-template-columns: 1fr 1fr;
       }
+
       .fg-full {
         grid-column: 1 / -1;
       }
@@ -1104,14 +1106,33 @@
       border-left: 3px solid var(--pink);
       display: none;
     }
-    
+
     @media (max-width: 500px) {
-      .cal-month { font-size: .4rem; }
-      .cal-nav-btn { padding: .25rem .45rem; font-size: 1rem; }
-      .tab-btn { font-size: .3rem; padding: .45rem .3rem; }
-      .htitle { font-size: .75rem; }
-      .mascot-box { min-width: 0; }
-      .phase-panel { min-width: 0; }
+      .cal-month {
+        font-size: .4rem;
+      }
+
+      .cal-nav-btn {
+        padding: .25rem .45rem;
+        font-size: 1rem;
+      }
+
+      .tab-btn {
+        font-size: .3rem;
+        padding: .45rem .3rem;
+      }
+
+      .htitle {
+        font-size: .75rem;
+      }
+
+      .mascot-box {
+        min-width: 0;
+      }
+
+      .phase-panel {
+        min-width: 0;
+      }
     }
   </style>
 </head>
@@ -1130,15 +1151,41 @@
   </svg>
 
   <!-- LANDING PAGE -->
-  <div id="landingView" class="landing-wrap" style="display:none; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; padding: 2rem; text-align:center;">
+  <div id="landingView" class="landing-wrap"
+    style="display:none; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; padding: 2rem; text-align:center;">
     <div class="htitle" style="font-size: clamp(1.5rem, 5vw, 2.5rem); margin-bottom:2rem;">✿ MI RUEDA DEL CICLO ✿</div>
     <div class="mascot-box card" style="margin-bottom: 2rem; max-width: 350px; padding: 2rem;">
       <span class="mascot-sprite">
-        <svg viewBox="0 0 16 16" width="96" height="96" style="display:block;margin:0 auto" shape-rendering="crispEdges"><rect x="2" y="6" width="12" height="7" fill="var(--mint)"/><rect x="3" y="13" width="10" height="1" fill="var(--mint)"/><rect x="4" y="5" width="8" height="1" fill="var(--mint)"/><rect x="1" y="10" width="2" height="4" fill="var(--mint)"/><rect x="13" y="10" width="2" height="4" fill="var(--mint)"/><rect x="0" y="14" width="3" height="1" fill="var(--mint)"/><rect x="13" y="14" width="3" height="1" fill="var(--mint)"/><rect x="2" y="3" width="4" height="3" fill="var(--mint)"/><rect x="10" y="3" width="4" height="3" fill="var(--mint)"/><rect x="3" y="2" width="2" height="1" fill="var(--mint)"/><rect x="11" y="2" width="2" height="1" fill="var(--mint)"/><rect x="3" y="4" width="2" height="2" fill="#fff"/><rect x="11" y="4" width="2" height="2" fill="#fff"/><rect x="4" y="4" width="1" height="1" fill="#1a1a1a"/><rect x="12" y="4" width="1" height="1" fill="#1a1a1a"/><rect x="3" y="7" width="2" height="1" fill="var(--pink)" opacity="0.8"/><rect x="11" y="7" width="2" height="1" fill="var(--pink)" opacity="0.8"/><rect x="6" y="8" width="1" height="1" fill="#1a1a1a"/><rect x="9" y="8" width="1" height="1" fill="#1a1a1a"/><rect x="7" y="9" width="2" height="1" fill="#1a1a1a"/></svg>
+        <svg viewBox="0 0 16 16" width="96" height="96" style="display:block;margin:0 auto"
+          shape-rendering="crispEdges">
+          <rect x="2" y="6" width="12" height="7" fill="var(--mint)" />
+          <rect x="3" y="13" width="10" height="1" fill="var(--mint)" />
+          <rect x="4" y="5" width="8" height="1" fill="var(--mint)" />
+          <rect x="1" y="10" width="2" height="4" fill="var(--mint)" />
+          <rect x="13" y="10" width="2" height="4" fill="var(--mint)" />
+          <rect x="0" y="14" width="3" height="1" fill="var(--mint)" />
+          <rect x="13" y="14" width="3" height="1" fill="var(--mint)" />
+          <rect x="2" y="3" width="4" height="3" fill="var(--mint)" />
+          <rect x="10" y="3" width="4" height="3" fill="var(--mint)" />
+          <rect x="3" y="2" width="2" height="1" fill="var(--mint)" />
+          <rect x="11" y="2" width="2" height="1" fill="var(--mint)" />
+          <rect x="3" y="4" width="2" height="2" fill="#fff" />
+          <rect x="11" y="4" width="2" height="2" fill="#fff" />
+          <rect x="4" y="4" width="1" height="1" fill="#1a1a1a" />
+          <rect x="12" y="4" width="1" height="1" fill="#1a1a1a" />
+          <rect x="3" y="7" width="2" height="1" fill="var(--pink)" opacity="0.8" />
+          <rect x="11" y="7" width="2" height="1" fill="var(--pink)" opacity="0.8" />
+          <rect x="6" y="8" width="1" height="1" fill="#1a1a1a" />
+          <rect x="9" y="8" width="1" height="1" fill="#1a1a1a" />
+          <rect x="7" y="9" width="2" height="1" fill="#1a1a1a" />
+        </svg>
       </span>
-      <div class="mascot-msg" style="font-size: 1.5rem; max-width: 100%; margin-top: 1rem;">¡Ribbit! Bienvenida. Conecta con tu ciclo.</div>
+      <div class="mascot-msg" style="font-size: 1.5rem; max-width: 100%; margin-top: 1rem;">¡Ribbit! Bienvenida. Conecta
+        con tu ciclo.</div>
     </div>
-    <button id="btnLandingLogin" class="bauth" style="font-size: .8rem; padding: 1.2rem 2rem; border-radius: var(--radius);"><i class="ti ti-brand-google" style="font-size: 1.6rem"></i> ENTRAR CON GOOGLE</button>
+    <button id="btnLandingLogin" class="bauth"
+      style="font-size: .8rem; padding: 1.2rem 2rem; border-radius: var(--radius);"><i class="ti ti-brand-google"
+        style="font-size: 1.6rem"></i> ENTRAR CON GOOGLE</button>
   </div>
 
   <!-- APP VIEW -->
@@ -1148,187 +1195,190 @@
       <button id="authBtn" class="bauth"><i class="ti ti-logout" aria-hidden="true"></i> SALIR</button>
     </div>
 
-  <header>
-    <div class="htitle">✿ MI RUEDA DEL CICLO ✿</div>
-    <div class="hero">
-      <div class="mascot-box" id="mascotBox">
-        <span class="mascot-sprite" id="mascotSprite"><i class="ti ti-sparkles" aria-hidden="true"></i></span>
-        <div class="mascot-name">LUNA</div>
-        <div class="mascot-msg" id="mascotMsg">¡Hola! ¿Cómo estás hoy?</div>
+    <header>
+      <div class="htitle">✿ MI RUEDA DEL CICLO ✿</div>
+      <div class="hero">
+        <div class="mascot-box" id="mascotBox">
+          <span class="mascot-sprite" id="mascotSprite"><i class="ti ti-sparkles" aria-hidden="true"></i></span>
+          <div class="mascot-name">Riggwise</div>
+          <div class="mascot-msg" id="mascotMsg">¡Hola! ¿Cómo estás hoy?</div>
+        </div>
+        <div class="phase-panel" id="phasePanel">
+          <span class="phase-icon" id="phaseIcon"><i class="ti ti-circle-dashed" aria-hidden="true"></i></span>
+          <div class="phase-name" id="phaseName">SIN DATOS</div>
+          <div class="phase-label" id="phaseLabel">Registra tu ciclo ✿</div>
+        </div>
       </div>
-      <div class="phase-panel" id="phasePanel">
-        <span class="phase-icon" id="phaseIcon"><i class="ti ti-circle-dashed" aria-hidden="true"></i></span>
-        <div class="phase-name" id="phaseName">SIN DATOS</div>
-        <div class="phase-label" id="phaseLabel">Registra tu ciclo ✿</div>
-      </div>
+    </header>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="registre"><i class="ti ti-pencil" aria-hidden="true"></i>
+        REGISTRO</button>
+      <button class="tab-btn" data-tab="calendari"><i class="ti ti-calendar" aria-hidden="true"></i> CALENDARIO</button>
+      <button class="tab-btn" data-tab="diari"><i class="ti ti-book" aria-hidden="true"></i> DIARIO</button>
+      <button class="tab-btn" data-tab="insights"><i class="ti ti-sparkles" aria-hidden="true"></i> INSIGHTS</button>
     </div>
-  </header>
 
-  <div class="tabs">
-    <button class="tab-btn active" data-tab="registre"><i class="ti ti-pencil" aria-hidden="true"></i> REGISTRO</button>
-    <button class="tab-btn" data-tab="calendari"><i class="ti ti-calendar" aria-hidden="true"></i> CALENDARIO</button>
-    <button class="tab-btn" data-tab="diari"><i class="ti ti-book" aria-hidden="true"></i> DIARIO</button>
-    <button class="tab-btn" data-tab="insights"><i class="ti ti-sparkles" aria-hidden="true"></i> INSIGHTS</button>
-  </div>
+    <!-- REGISTRO -->
+    <div class="tab-panel active wrap" id="tab-registre">
+      <div class="two-col">
+        <div class="pbox card">
+          <div class="ctitle"><i class="ti ti-pencil" aria-hidden="true"></i> REGISTRO DEL DÍA</div>
 
-  <!-- REGISTRO -->
-  <div class="tab-panel active wrap" id="tab-registre">
-    <div class="two-col">
-      <div class="pbox card">
-        <div class="ctitle"><i class="ti ti-pencil" aria-hidden="true"></i> REGISTRO DEL DÍA</div>
+          <div class="form-grid">
+            <div class="fg fg-full">
+              <span class="fl">FECHA</span>
+              <input type="date" id="inputDate">
+            </div>
 
-        <div class="form-grid">
-          <div class="fg fg-full">
-            <span class="fl">FECHA</span>
-            <input type="date" id="inputDate">
-          </div>
+            <div class="fg fg-full">
+              <span class="fl">¿CÓMO TE SIENTES? ✿</span>
+              <div class="mood-grid" id="moodGrid"></div>
+            </div>
 
-          <div class="fg fg-full">
-            <span class="fl">¿CÓMO TE SIENTES? ✿</span>
-            <div class="mood-grid" id="moodGrid"></div>
-          </div>
+            <div class="fg">
+              <span class="fl">NOTAS</span>
+              <textarea id="inputEmocions" placeholder="¿Cómo te has sentido hoy…"></textarea>
+            </div>
 
-          <div class="fg">
-            <span class="fl">NOTAS</span>
-            <textarea id="inputEmocions" placeholder="¿Cómo te has sentido hoy…"></textarea>
-          </div>
+            <div class="fg">
+              <span class="fl">SÍNTOMAS</span>
+              <textarea id="inputSimptomes" placeholder="Cólicos, fatiga, dolor de cabeza…"></textarea>
+            </div>
 
-          <div class="fg">
-            <span class="fl">SÍNTOMAS</span>
-            <textarea id="inputSimptomes" placeholder="Cólicos, fatiga, dolor de cabeza…"></textarea>
-          </div>
+            <div class="fg fg-full">
+              <span class="fl">¿DÓNDE TE DUELE?</span>
+              <div class="body-zones" id="bodyZones"></div>
+            </div>
 
-          <div class="fg fg-full">
-            <span class="fl">¿DÓNDE TE DUELE?</span>
-            <div class="body-zones" id="bodyZones"></div>
-          </div>
+            <div class="fg fg-full">
+              <span class="fl">ENERGÍA</span>
+              <div class="energy-row">
+                <button class="ebtn" data-val="1" aria-label="Energía baja"><i class="ti ti-bolt"
+                    aria-hidden="true"></i></button>
+                <button class="ebtn" data-val="2" aria-label="Energía media"><i class="ti ti-bolt"
+                    aria-hidden="true"></i></button>
+                <button class="ebtn" data-val="3" aria-label="Energía alta"><i class="ti ti-bolt"
+                    aria-hidden="true"></i></button>
+                <span id="energyLabel">SIN DATOS</span>
+              </div>
+            </div>
 
-          <div class="fg fg-full">
-            <span class="fl">ENERGÍA</span>
-            <div class="energy-row">
-              <button class="ebtn" data-val="1" aria-label="Energía baja"><i class="ti ti-bolt"
-                  aria-hidden="true"></i></button>
-              <button class="ebtn" data-val="2" aria-label="Energía media"><i class="ti ti-bolt"
-                  aria-hidden="true"></i></button>
-              <button class="ebtn" data-val="3" aria-label="Energía alta"><i class="ti ti-bolt"
-                  aria-hidden="true"></i></button>
-              <span id="energyLabel">SIN DATOS</span>
+            <div class="fg">
+              <span class="fl">TIPO DE FLUJO</span>
+              <div class="dopts">
+                <input type="radio" name="fluix" id="f-sec" value="Seco" class="dopt"><label for="f-sec">SECO</label>
+                <input type="radio" name="fluix" id="f-cremos" value="Cremoso" class="dopt"><label
+                  for="f-cremos">CREMOSO</label>
+                <input type="radio" name="fluix" id="f-aquos" value="Acuoso" class="dopt"><label
+                  for="f-aquos">ACUOSO</label>
+                <input type="radio" name="fluix" id="f-clara" value="Clara" class="dopt"><label
+                  for="f-clara">CLARA</label>
+              </div>
+            </div>
+
+            <div class="fg">
+              <span class="fl">DESEO</span>
+              <div class="dopts">
+                <input type="radio" name="desig" id="d-nul" value="nulo" class="dopt"><label for="d-nul">NULO</label>
+                <input type="radio" name="desig" id="d-baix" value="bajo" class="dopt"><label for="d-baix">BAJO</label>
+                <input type="radio" name="desig" id="d-mig" value="medio" class="dopt"><label for="d-mig">MEDIO</label>
+                <input type="radio" name="desig" id="d-alt" value="alto" class="dopt"><label for="d-alt">ALTO</label>
+              </div>
+            </div>
+
+            <div class="fg fg-full">
+              <span class="fl">SANGRE</span>
+              <div class="drow" id="dropsRow">
+                <button class="dbtn" data-val="1" aria-label="1 gota"><svg class="drop-svg">
+                    <use href="#dropsym" style="color:var(--red)" />
+                  </svg></button>
+                <button class="dbtn" data-val="2" aria-label="2 gotas"><svg class="drop-svg">
+                    <use href="#dropsym" style="color:var(--red)" />
+                  </svg></button>
+                <button class="dbtn" data-val="3" aria-label="3 gotas"><svg class="drop-svg">
+                    <use href="#dropsym" style="color:var(--red)" />
+                  </svg></button>
+                <button class="dbtn" data-val="4" aria-label="4 gotas"><svg class="drop-svg">
+                    <use href="#dropsym" style="color:var(--red)" />
+                  </svg></button>
+                <button class="dbtn" data-val="5" aria-label="5 gotas"><svg class="drop-svg">
+                    <use href="#dropsym" style="color:var(--red)" />
+                  </svg></button>
+                <span id="dropLabel">NADA</span>
+              </div>
             </div>
           </div>
 
-          <div class="fg">
-            <span class="fl">TIPO DE FLUJO</span>
-            <div class="dopts">
-              <input type="radio" name="fluix" id="f-sec" value="Seco" class="dopt"><label for="f-sec">SECO</label>
-              <input type="radio" name="fluix" id="f-cremos" value="Cremoso" class="dopt"><label
-                for="f-cremos">CREMOSO</label>
-              <input type="radio" name="fluix" id="f-aquos" value="Acuoso" class="dopt"><label
-                for="f-aquos">ACUOSO</label>
-              <input type="radio" name="fluix" id="f-clara" value="Clara" class="dopt"><label for="f-clara">CLARA</label>
-            </div>
+          <div id="comfortBox" class="comfort-box">
+            <div class="comfort-title"><i class="ti ti-heart" aria-hidden="true"></i> CUIDADOS PARA TI</div>
+            <div id="comfortItems"></div>
           </div>
 
-          <div class="fg">
-            <span class="fl">DESEO</span>
-            <div class="dopts">
-              <input type="radio" name="desig" id="d-nul" value="nulo" class="dopt"><label for="d-nul">NULO</label>
-              <input type="radio" name="desig" id="d-baix" value="bajo" class="dopt"><label for="d-baix">BAJO</label>
-              <input type="radio" name="desig" id="d-mig" value="medio" class="dopt"><label for="d-mig">MEDIO</label>
-              <input type="radio" name="desig" id="d-alt" value="alto" class="dopt"><label for="d-alt">ALTO</label>
-            </div>
-          </div>
-
-          <div class="fg fg-full">
-            <span class="fl">SANGRE</span>
-            <div class="drow" id="dropsRow">
-              <button class="dbtn" data-val="1" aria-label="1 gota"><svg class="drop-svg">
-                  <use href="#dropsym" style="color:var(--red)" />
-                </svg></button>
-              <button class="dbtn" data-val="2" aria-label="2 gotas"><svg class="drop-svg">
-                  <use href="#dropsym" style="color:var(--red)" />
-                </svg></button>
-              <button class="dbtn" data-val="3" aria-label="3 gotas"><svg class="drop-svg">
-                  <use href="#dropsym" style="color:var(--red)" />
-                </svg></button>
-              <button class="dbtn" data-val="4" aria-label="4 gotas"><svg class="drop-svg">
-                  <use href="#dropsym" style="color:var(--red)" />
-                </svg></button>
-              <button class="dbtn" data-val="5" aria-label="5 gotas"><svg class="drop-svg">
-                  <use href="#dropsym" style="color:var(--red)" />
-                </svg></button>
-              <span id="dropLabel">NADA</span>
-            </div>
+          <div style="display:flex; gap:.6rem; margin-top:.6rem;">
+            <button id="btnDelete" class="bauth"
+              style="flex:1; padding:.75rem .5rem; display:flex; align-items:center; justify-content:center; gap:.4rem;">
+              <i class="ti ti-trash" aria-hidden="true"></i> BORRAR
+            </button>
+            <button id="btnSave" class="bsave" style="flex:2.5; width:100%;">
+              <i class="ti ti-check" aria-hidden="true"></i> GUARDAR DÍA
+            </button>
           </div>
         </div>
 
-        <div id="comfortBox" class="comfort-box">
-          <div class="comfort-title"><i class="ti ti-heart" aria-hidden="true"></i> CUIDADOS PARA TI</div>
-          <div id="comfortItems"></div>
-        </div>
-
-        <div style="display:flex; gap:.6rem; margin-top:.6rem;">
-          <button id="btnDelete" class="bauth" style="flex:1; padding:.75rem .5rem; display:flex; align-items:center; justify-content:center; gap:.4rem;">
-            <i class="ti ti-trash" aria-hidden="true"></i> BORRAR
-          </button>
-          <button id="btnSave" class="bsave" style="flex:2.5; width:100%;">
-            <i class="ti ti-check" aria-hidden="true"></i> GUARDAR DÍA
-          </button>
-        </div>
-      </div>
-
-      <div class="pbox-dark card">
-        <div class="ctitle ctitle-dark"><i class="ti ti-moon" aria-hidden="true"></i> HOY</div>
-        <div id="todayPanel" style="font-size:.95rem;color:var(--text-muted);line-height:1.6">
-          Guarda un registro para ver tu estado de hoy ✿
+        <div class="pbox-dark card">
+          <div class="ctitle ctitle-dark"><i class="ti ti-moon" aria-hidden="true"></i> HOY</div>
+          <div id="todayPanel" style="font-size:.95rem;color:var(--text-muted);line-height:1.6">
+            Guarda un registro para ver tu estado de hoy ✿
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- CALENDARIO -->
-  <div class="tab-panel wrap" id="tab-calendari">
-    <div class="pbox-dark card">
-      <div class="ctitle ctitle-dark"><i class="ti ti-calendar" aria-hidden="true"></i> CALENDARIO</div>
-      <div class="cal-nav">
-        <button class="cal-nav-btn" id="calPrev" aria-label="Mes anterior"><i class="ti ti-chevron-left"
-            aria-hidden="true"></i></button>
-        <span class="cal-month" id="calMonthLabel"></span>
-        <button class="cal-nav-btn" id="calNext" aria-label="Mes siguiente"><i class="ti ti-chevron-right"
-            aria-hidden="true"></i></button>
-      </div>
-      <div class="cal-grid" id="calGrid"></div>
-      <div id="calDetail"></div>
-    </div>
-  </div>
-
-  <!-- DIARIO -->
-  <div class="tab-panel wrap" id="tab-diari">
-    <div class="pbox-dark card">
-      <div class="ctitle ctitle-dark"><i class="ti ti-book" aria-hidden="true"></i> MI DIARIO</div>
-      <div class="ghdr">
-        <span>FECHA</span><span>ESTADO</span><span>SÍNTOMAS</span><span>FLUJO</span><span>DESEO</span><span>SANGRE</span><span></span>
-      </div>
-      <div id="gridBody"></div>
-    </div>
-  </div>
-
-  <!-- INSIGHTS -->
-  <div class="tab-panel wrap" id="tab-insights">
-    <div style="display:grid;gap:1.4rem">
+    <!-- CALENDARIO -->
+    <div class="tab-panel wrap" id="tab-calendari">
       <div class="pbox-dark card">
-        <div class="ctitle ctitle-dark"><i class="ti ti-chart-bar" aria-hidden="true"></i> ESTADÍSTICAS</div>
-        <div class="stats-grid" id="statsGrid"></div>
-      </div>
-      <div class="pbox-dark card">
-        <div class="ctitle ctitle-dark"><i class="ti ti-trophy" aria-hidden="true"></i> LOGROS</div>
-        <div class="ach-grid" id="achGrid"></div>
-      </div>
-      <div class="pbox-dark card">
-        <div class="ctitle ctitle-dark"><i class="ti ti-chart-dots" aria-hidden="true"></i> PATRONES</div>
-        <div class="insight-list" id="insightList"></div>
+        <div class="ctitle ctitle-dark"><i class="ti ti-calendar" aria-hidden="true"></i> CALENDARIO</div>
+        <div class="cal-nav">
+          <button class="cal-nav-btn" id="calPrev" aria-label="Mes anterior"><i class="ti ti-chevron-left"
+              aria-hidden="true"></i></button>
+          <span class="cal-month" id="calMonthLabel"></span>
+          <button class="cal-nav-btn" id="calNext" aria-label="Mes siguiente"><i class="ti ti-chevron-right"
+              aria-hidden="true"></i></button>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+        <div id="calDetail"></div>
       </div>
     </div>
-  </div>
+
+    <!-- DIARIO -->
+    <div class="tab-panel wrap" id="tab-diari">
+      <div class="pbox-dark card">
+        <div class="ctitle ctitle-dark"><i class="ti ti-book" aria-hidden="true"></i> MI DIARIO</div>
+        <div class="ghdr">
+          <span>FECHA</span><span>ESTADO</span><span>SÍNTOMAS</span><span>FLUJO</span><span>DESEO</span><span>SANGRE</span><span></span>
+        </div>
+        <div id="gridBody"></div>
+      </div>
+    </div>
+
+    <!-- INSIGHTS -->
+    <div class="tab-panel wrap" id="tab-insights">
+      <div style="display:grid;gap:1.4rem">
+        <div class="pbox-dark card">
+          <div class="ctitle ctitle-dark"><i class="ti ti-chart-bar" aria-hidden="true"></i> ESTADÍSTICAS</div>
+          <div class="stats-grid" id="statsGrid"></div>
+        </div>
+        <div class="pbox-dark card">
+          <div class="ctitle ctitle-dark"><i class="ti ti-trophy" aria-hidden="true"></i> LOGROS</div>
+          <div class="ach-grid" id="achGrid"></div>
+        </div>
+        <div class="pbox-dark card">
+          <div class="ctitle ctitle-dark"><i class="ti ti-chart-dots" aria-hidden="true"></i> PATRONES</div>
+          <div class="insight-list" id="insightList"></div>
+        </div>
+      </div>
+    </div>
 
   </div> <!-- end appView -->
 
@@ -1401,7 +1451,7 @@
       else if (face === 'tired') f = `<rect x="6" y="9" width="4" height="1" fill="#1a1a1a"/>`;
       else if (face === 'o') f = `<rect x="7" y="8" width="2" height="2" fill="#1a1a1a"/>`;
       else f = `<rect x="6" y="8" width="4" height="1" fill="#1a1a1a"/>`;
-      
+
       return `<svg viewBox="0 0 16 16" width="64" height="64" style="display:block;margin:0 auto" shape-rendering="crispEdges"><rect x="2" y="6" width="12" height="7" fill="${col}"/><rect x="3" y="13" width="10" height="1" fill="${col}"/><rect x="4" y="5" width="8" height="1" fill="${col}"/><rect x="1" y="10" width="2" height="4" fill="${col}"/><rect x="13" y="10" width="2" height="4" fill="${col}"/><rect x="0" y="14" width="3" height="1" fill="${col}"/><rect x="13" y="14" width="3" height="1" fill="${col}"/><rect x="2" y="3" width="4" height="3" fill="${col}"/><rect x="10" y="3" width="4" height="3" fill="${col}"/><rect x="3" y="2" width="2" height="1" fill="${col}"/><rect x="11" y="2" width="2" height="1" fill="${col}"/><rect x="3" y="4" width="2" height="2" fill="#fff"/><rect x="11" y="4" width="2" height="2" fill="#fff"/><rect x="4" y="4" width="1" height="1" fill="#1a1a1a"/><rect x="12" y="4" width="1" height="1" fill="#1a1a1a"/><rect x="3" y="7" width="2" height="1" fill="var(--pink)" opacity="0.8"/><rect x="11" y="7" width="2" height="1" fill="var(--pink)" opacity="0.8"/>${f}${acc}</svg>`;
     };
 
@@ -1887,7 +1937,7 @@
       const simptomes = document.getElementById('inputSimptomes').value.trim();
       const desig = document.querySelector('input[name="desig"]:checked')?.value || '-';
       const fluix = document.querySelector('input[name="fluix"]:checked')?.value || '-';
-      
+
       const isEmpty = !emocions && !simptomes && desig === '-' && fluix === '-' && drops === 0 && !selectedMood && energia === 0 && selectedZones.size === 0;
 
       if (isEmpty) {
