@@ -1337,7 +1337,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-    import { getAuth, signInWithRedirect, getRedirectResult, GoogleAuthProvider, onAuthStateChanged, signOut }
+    import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut }
       from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
     const firebaseConfig = {
@@ -1519,15 +1519,14 @@
     const appView = document.getElementById('appView');
 
     btnAuth.addEventListener('click', () => signOut(auth));
-    btnLandingLogin.addEventListener('click', () => signInWithRedirect(auth, provider));
-    getRedirectResult(auth).catch(err => console.error('Login error:', err));
+    btnLandingLogin.addEventListener('click', () => signInWithPopup(auth, provider).catch(err => console.error('Login error:', err)));
 
     onAuthStateChanged(auth, async u => {
       user = u;
       if (u) {
         landingView.style.display = 'none';
         appView.style.display = 'block';
-        if (userInfoEl) userInfoEl.textContent = u.displayName.toUpperCase();
+        if (userInfoEl) userInfoEl.textContent = (u.displayName || 'USUARIO').toUpperCase();
         await loadData();
       } else {
         landingView.style.display = 'flex';
