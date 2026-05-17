@@ -11,34 +11,36 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.33.0/dist/tabler-icons.min.css">
   <style>
     :root {
-      --bg: #0c0818;
-      --bg2: #160e26;
-      --bg3: #1e1232;
-      --bg4: #261840;
+      --bg: #eefaee;
+      --bg2: #e0f2e0;
+      --bg3: #d2ebd2;
+      --bg4: #c2e3c2;
 
-      --pink: #e8447a;
-      --pink2: #ff6da0;
-      --pink3: #ffaac8;
-      --pink4: #ffd6e8;
+      --pink: #ffaac8;
+      --pink2: #ff8ba7;
+      --pink3: #6b8f6b;
+      --pink4: #f7e6ea;
 
-      --lav: #b06aff;
-      --mint: #4ef0c0;
-      --yellow: #ffdd44;
-      --red: #ff3a6e;
+      --lav: #d2bcf3;
+      --mint: #84e2a8;
+      --yellow: #fdf2a2;
+      --red: #ff8ba7;
 
-      --panel: #f9e4ee;
-      --panel2: #f0c8da;
-      --border: #e8447a;
+      --panel: #ffffff;
+      --panel2: #f5fcf5;
+      --border: #8ab08a;
 
-      --shadow: #2a0818;
-      --shadow2: #3d1228;
+      --shadow: #b5d1b5;
+      --shadow2: #a2c6a2;
 
-      --text-dark: #1a0820;
-      --text-mid: #a05070;
-      --text-muted: #c490a8;
-      --text-light: #f9e4ee;
+      --text-dark: #2d402d;
+      --text-mid: #4a664a;
+      --text-muted: #6b8f6b;
+      --text-light: #2d402d;
 
       --phase-col: var(--pink2);
+      
+      --radius: 16px;
 
       --px-border: 2px solid var(--border);
       --px-shadow: 4px 4px 0 var(--shadow);
@@ -72,11 +74,11 @@
     body {
       font-family: 'VT323', monospace;
       background: var(--bg);
-      background-image:
-        radial-gradient(ellipse 120% 50% at 50% -5%, rgba(120, 30, 80, 0.35) 0%, transparent 65%),
-        radial-gradient(ellipse 60% 30% at 80% 100%, rgba(60, 10, 80, 0.2) 0%, transparent 50%);
-      color: var(--text-light);
+      background-image: radial-gradient(var(--bg3) 2px, transparent 2px);
+      background-size: 20px 20px;
+      color: var(--text-dark);
       min-height: 100vh;
+      font-size: 1.25rem;
     }
 
     /* ── PIXEL BOX ── */
@@ -84,13 +86,15 @@
       background: var(--panel);
       color: var(--text-dark);
       border: var(--px-border);
+      border-radius: var(--radius);
       box-shadow: var(--px-shadow);
     }
 
     .pbox-dark {
       background: var(--bg2);
-      color: var(--text-light);
+      color: var(--text-dark);
       border: var(--px-border);
+      border-radius: var(--radius);
       box-shadow: var(--px-shadow);
     }
 
@@ -107,20 +111,24 @@
 
     .user-info {
       font-family: 'Press Start 2P';
-      font-size: .45rem;
-      color: var(--pink3);
+      font-size: .55rem;
+      color: var(--text-mid);
       letter-spacing: .05em;
     }
 
     .bauth {
       background: var(--bg3);
-      color: var(--pink3);
-      padding: .5rem .9rem;
+      color: var(--text-mid);
+      padding: .6rem 1rem;
       border: var(--px-border);
+      border-radius: var(--radius);
       box-shadow: var(--px-shadow-sm);
       font-family: 'Press Start 2P';
-      font-size: .42rem;
+      font-size: .55rem;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
       transition: background .15s, color .15s, transform .1s;
       letter-spacing: .04em;
     }
@@ -144,10 +152,10 @@
 
     .htitle {
       font-family: 'Press Start 2P';
-      font-size: clamp(.7rem, 2.2vw, 1.1rem);
-      color: var(--pink2);
+      font-size: clamp(1rem, 3.5vw, 1.8rem);
+      color: var(--text-dark);
       letter-spacing: .08em;
-      text-shadow: 3px 3px 0 var(--shadow2), 0 0 40px rgba(232, 68, 122, 0.25);
+      text-shadow: 4px 4px 0 var(--shadow);
       margin-bottom: 1.2rem;
     }
 
@@ -165,6 +173,7 @@
     .mascot-box {
       background: var(--bg3);
       border: var(--px-border);
+      border-radius: var(--radius);
       box-shadow: var(--px-shadow-sm);
       padding: .9rem 1.2rem;
       text-align: center;
@@ -176,7 +185,7 @@
       font-size: 2rem;
       display: block;
       margin-bottom: .4rem;
-      color: var(--pink2);
+      color: var(--text-mid);
       line-height: 1;
       animation: float-up 3s ease-in-out infinite;
     }
@@ -190,10 +199,10 @@
     }
 
     .mascot-msg {
-      font-size: 1.05rem;
-      color: var(--pink3);
+      font-size: 1.2rem;
+      color: var(--text-mid);
       line-height: 1.3;
-      max-width: 110px;
+      max-width: 140px;
     }
 
     /* ── PHASE PANEL ── */
@@ -226,8 +235,8 @@
     }
 
     .phase-label {
-      font-size: 1rem;
-      color: var(--pink3)
+      font-size: 1.15rem;
+      color: var(--text-muted)
     }
 
     /* ── TABS ── */
@@ -242,11 +251,12 @@
 
     .tab-btn {
       font-family: 'Press Start 2P';
-      font-size: .38rem;
-      padding: .55rem .8rem;
+      font-size: .5rem;
+      padding: .65rem .9rem;
       background: var(--bg3);
       color: var(--text-muted);
       border: var(--px-border);
+      border-radius: var(--radius);
       box-shadow: 3px 3px 0 var(--shadow);
       cursor: pointer;
       flex: 1;
@@ -254,7 +264,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: .4rem;
+      gap: .5rem;
       letter-spacing: .04em;
       transition: background .15s, color .15s, transform .1s, box-shadow .1s;
     }
@@ -265,7 +275,7 @@
 
     .tab-btn:hover:not(.active) {
       background: var(--bg4);
-      color: var(--pink3);
+      color: var(--text-mid);
       transform: translateY(-1px);
     }
 
@@ -286,20 +296,31 @@
 
     /* ── LAYOUT ── */
     .wrap {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 1.5rem 5rem
     }
 
     .two-col {
       display: grid;
-      grid-template-columns: 360px 1fr;
+      grid-template-columns: 1fr;
       gap: 1.5rem
     }
+    
+    .form-grid {
+      display: grid;
+      gap: 1rem;
+    }
 
-    @media (max-width: 800px) {
+    @media (min-width: 800px) {
       .two-col {
-        grid-template-columns: 1fr
+        grid-template-columns: minmax(500px, 1.4fr) 1fr;
+      }
+      .form-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .fg-full {
+        grid-column: 1 / -1;
       }
     }
 
@@ -310,15 +331,15 @@
     /* ── CARD TITLES ── */
     .ctitle {
       font-family: 'Press Start 2P';
-      font-size: .55rem;
-      color: var(--text-mid);
+      font-size: .7rem;
+      color: var(--text-dark);
       letter-spacing: .05em;
       margin-bottom: 1.2rem;
       padding-bottom: .65rem;
-      border-bottom: 3px solid var(--panel2);
+      border-bottom: 3px solid var(--border);
       display: flex;
       align-items: center;
-      gap: .55rem;
+      gap: .65rem;
     }
 
     .ctitle .ti {
@@ -327,8 +348,8 @@
     }
 
     .ctitle-dark {
-      color: var(--pink2);
-      border-bottom-color: var(--bg4);
+      color: var(--text-dark);
+      border-bottom-color: var(--border);
     }
 
     /* ── FORM ── */
@@ -338,10 +359,10 @@
 
     .fl {
       font-family: 'Press Start 2P';
-      font-size: .4rem;
-      color: var(--text-mid);
+      font-size: .55rem;
+      color: var(--text-dark);
       letter-spacing: .04em;
-      margin-bottom: .4rem;
+      margin-bottom: .5rem;
       display: block;
     }
 
@@ -349,11 +370,12 @@
     textarea,
     select {
       width: 100%;
-      background: #fff8fb;
+      background: #ffffff;
       border: var(--px-border);
-      padding: .5rem .65rem;
+      border-radius: var(--radius);
+      padding: .6rem .8rem;
       font-family: 'VT323';
-      font-size: 1.15rem;
+      font-size: 1.4rem;
       outline: none;
       color: var(--text-dark);
       transition: border-color .15s;
@@ -381,10 +403,11 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: .2rem;
-      padding: .5rem .25rem;
-      background: #fff8fb;
+      gap: .3rem;
+      padding: .6rem .3rem;
+      background: #ffffff;
       border: var(--px-border);
+      border-radius: var(--radius);
       cursor: pointer;
       transition: transform .12s, border-color .12s, background .12s;
     }
@@ -413,7 +436,7 @@
 
     .mood-label {
       font-family: 'Press Start 2P';
-      font-size: .27rem;
+      font-size: .35rem;
       color: var(--text-mid);
       letter-spacing: .03em
     }
@@ -430,12 +453,12 @@
     }
 
     .dopt+label {
-      padding: .38rem .65rem;
-      background: #fff8fb;
+      padding: .45rem .8rem;
+      background: #ffffff;
       border: var(--px-border);
       cursor: pointer;
       font-family: 'Press Start 2P';
-      font-size: .36rem;
+      font-size: .45rem;
       color: var(--text-mid);
       letter-spacing: .03em;
       transition: background .12s, color .12s;
@@ -536,12 +559,13 @@
       display: flex;
       align-items: center;
       gap: .4rem;
-      padding: .35rem .6rem;
-      background: #fff8fb;
+      padding: .45rem .8rem;
+      background: #ffffff;
       border: var(--px-border);
+      border-radius: var(--radius);
       cursor: pointer;
       font-family: 'Press Start 2P';
-      font-size: .31rem;
+      font-size: .45rem;
       color: var(--text-mid);
       letter-spacing: .03em;
       transition: background .12s, border-color .12s, transform .12s;
@@ -571,7 +595,8 @@
     /* ── COMFORT BOX ── */
     .comfort-box {
       background: var(--bg2);
-      border: 1px solid var(--pink3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       padding: .8rem 1rem;
       margin-top: .75rem;
       display: none;
@@ -583,13 +608,13 @@
 
     .comfort-title {
       font-family: 'Press Start 2P';
-      font-size: .35rem;
-      color: var(--pink2);
+      font-size: .45rem;
+      color: var(--text-dark);
       letter-spacing: .04em;
-      margin-bottom: .5rem;
+      margin-bottom: .6rem;
       display: flex;
       align-items: center;
-      gap: .4rem;
+      gap: .5rem;
     }
 
     .comfort-title .ti {
@@ -597,12 +622,12 @@
     }
 
     .comfort-item {
-      font-size: .95rem;
-      color: var(--pink3);
+      font-size: 1.2rem;
+      color: var(--text-mid);
       padding: .18rem 0;
       display: flex;
       align-items: center;
-      gap: .4rem;
+      gap: .5rem;
       line-height: 1.3;
     }
 
@@ -614,19 +639,20 @@
 
     /* ── SAVE BUTTON ── */
     .bsave {
-      padding: .75rem 1rem;
+      padding: .85rem 1rem;
       background: var(--pink);
       color: #fff;
-      border: 2px solid #ff80b0;
+      border: 2px solid var(--pink2);
+      border-radius: var(--radius);
       box-shadow: 4px 4px 0 var(--shadow2);
       font-family: 'Press Start 2P';
-      font-size: .44rem;
+      font-size: .6rem;
       letter-spacing: .05em;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: .55rem;
+      gap: .65rem;
       transition: transform .12s, box-shadow .12s, background .12s;
     }
 
@@ -656,11 +682,12 @@
     .cal-nav-btn {
       background: var(--bg3);
       border: var(--px-border);
+      border-radius: var(--radius);
       box-shadow: var(--px-shadow-sm);
-      color: var(--pink2);
+      color: var(--text-mid);
       cursor: pointer;
-      padding: .38rem .7rem;
-      font-size: 1.1rem;
+      padding: .4rem .8rem;
+      font-size: 1.4rem;
       line-height: 1;
       transition: background .12s, transform .1s;
     }
@@ -673,8 +700,8 @@
 
     .cal-month {
       font-family: 'Press Start 2P';
-      font-size: .52rem;
-      color: var(--pink2);
+      font-size: .65rem;
+      color: var(--text-dark);
       letter-spacing: .05em;
     }
 
@@ -686,10 +713,10 @@
 
     .cal-hdr {
       font-family: 'Press Start 2P';
-      font-size: .3rem;
-      color: var(--text-muted);
+      font-size: .4rem;
+      color: var(--text-mid);
       text-align: center;
-      padding: .28rem 0;
+      padding: .35rem 0;
       letter-spacing: .04em;
     }
 
@@ -703,6 +730,7 @@
       padding-top: 4px;
       cursor: pointer;
       border: 2px solid transparent;
+      border-radius: 6px;
       transition: border-color .12s, background .12s;
     }
 
@@ -712,7 +740,7 @@
     }
 
     .cal-day.today {
-      border-color: var(--pink2)
+      border-color: var(--pink)
     }
 
     .cal-day.has-entry {
@@ -725,8 +753,8 @@
 
     .cal-num {
       font-family: 'Press Start 2P';
-      font-size: .3rem;
-      color: var(--text-muted)
+      font-size: .45rem;
+      color: var(--text-dark)
     }
 
     .cal-dot {
@@ -737,9 +765,9 @@
     }
 
     .cal-icons {
-      font-size: .9rem;
+      font-size: 1.1rem;
       line-height: 1;
-      color: var(--pink2)
+      color: var(--text-mid)
     }
 
     .cal-empty {
@@ -751,7 +779,7 @@
     .ghdr,
     .drow2 {
       display: grid;
-      grid-template-columns: 90px 1fr 1fr 65px 65px 55px;
+      grid-template-columns: 90px 1fr 1fr 65px 65px 55px 30px;
       gap: .3rem;
       padding: .5rem .6rem;
       align-items: center;
@@ -760,16 +788,16 @@
     .ghdr {
       background: var(--bg3);
       font-family: 'Press Start 2P';
-      font-size: .3rem;
-      color: var(--text-muted);
+      font-size: .45rem;
+      color: var(--text-dark);
       letter-spacing: .04em;
     }
 
     .drow2 {
-      background: var(--bg2);
+      background: #ffffff;
       margin-top: 3px;
       border-bottom: 1px solid var(--bg3);
-      font-size: .95rem;
+      font-size: 1.15rem;
       transition: background .12s;
     }
 
@@ -822,7 +850,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        font-size: 1rem;
+        font-size: 1.15rem;
         opacity: .8
       }
 
@@ -852,7 +880,7 @@
         display: flex;
         gap: .5rem;
         align-items: flex-start;
-        font-size: .95rem
+        font-size: 1.15rem
       }
 
       .mob-label {
@@ -876,6 +904,7 @@
     .stat-card {
       background: var(--bg3);
       border: var(--px-border);
+      border-radius: var(--radius);
       box-shadow: var(--px-shadow-sm);
       padding: 1rem .9rem;
       text-align: center;
@@ -889,10 +918,10 @@
 
     .stat-val {
       font-family: 'Press Start 2P';
-      font-size: .8rem;
+      font-size: 1rem;
       color: var(--pink2);
       display: block;
-      margin-bottom: .3rem;
+      margin-bottom: .4rem;
     }
 
     .stat-icon {
@@ -904,8 +933,8 @@
     }
 
     .stat-label {
-      font-size: .85rem;
-      color: var(--text-muted)
+      font-size: 1.05rem;
+      color: var(--text-mid)
     }
 
     /* ── ACHIEVEMENTS ── */
@@ -919,6 +948,7 @@
     .ach-card {
       background: var(--bg3);
       border: var(--px-border);
+      border-radius: var(--radius);
       box-shadow: var(--px-shadow-sm);
       padding: .75rem .7rem;
       text-align: center;
@@ -951,15 +981,15 @@
 
     .ach-name {
       font-family: 'Press Start 2P';
-      font-size: .28rem;
-      color: var(--yellow);
-      margin-bottom: .2rem;
+      font-size: .4rem;
+      color: var(--pink2);
+      margin-bottom: .25rem;
       letter-spacing: .04em
     }
 
     .ach-desc {
-      font-size: .78rem;
-      color: var(--text-muted)
+      font-size: 1.1rem;
+      color: var(--text-mid)
     }
 
     /* ── INSIGHTS ── */
@@ -972,7 +1002,8 @@
     .insight-card {
       background: var(--bg3);
       border: 1px solid var(--bg4);
-      border-left: 3px solid var(--pink);
+      border-radius: var(--radius);
+      border-left: 5px solid var(--pink);
       padding: .8rem 1rem;
       display: flex;
       gap: .75rem;
@@ -993,26 +1024,26 @@
     }
 
     .insight-text {
-      font-size: .95rem;
-      color: var(--pink3);
+      font-size: 1.2rem;
+      color: var(--text-dark);
       line-height: 1.35
     }
 
     /* ── TODAY PANEL ── */
     .today-field {
-      margin-bottom: .6rem;
-      font-size: .95rem;
-      color: var(--pink3);
+      margin-bottom: .7rem;
+      font-size: 1.25rem;
+      color: var(--text-mid);
       line-height: 1.4;
       display: flex;
       align-items: baseline;
-      gap: .5rem;
+      gap: .6rem;
       flex-wrap: wrap;
     }
 
     .today-label {
       font-family: 'Press Start 2P';
-      font-size: .33rem;
+      font-size: .45rem;
       color: var(--pink2);
       display: block;
       flex-shrink: 0;
@@ -1035,11 +1066,12 @@
       color: var(--pink2);
       padding: .85rem 1.4rem;
       border: var(--px-border);
+      border-radius: var(--radius);
       box-shadow: 4px 4px 0 var(--shadow);
       z-index: 999;
       transition: transform .3s cubic-bezier(.34, 1.56, .64, 1);
       font-family: 'Press Start 2P';
-      font-size: .38rem;
+      font-size: .5rem;
       letter-spacing: .05em;
       text-align: center;
       max-width: 90vw;
@@ -1072,6 +1104,15 @@
       border-left: 3px solid var(--pink);
       display: none;
     }
+    
+    @media (max-width: 500px) {
+      .cal-month { font-size: .4rem; }
+      .cal-nav-btn { padding: .25rem .45rem; font-size: 1rem; }
+      .tab-btn { font-size: .3rem; padding: .45rem .3rem; }
+      .htitle { font-size: .75rem; }
+      .mascot-box { min-width: 0; }
+      .phase-panel { min-width: 0; }
+    }
   </style>
 </head>
 
@@ -1088,10 +1129,24 @@
     </symbol>
   </svg>
 
-  <div class="auth-bar">
-    <div id="userInfo" class="user-info"></div>
-    <button id="authBtn" class="bauth">CARGANDO…</button>
+  <!-- LANDING PAGE -->
+  <div id="landingView" class="landing-wrap" style="display:none; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; padding: 2rem; text-align:center;">
+    <div class="htitle" style="font-size: clamp(1.5rem, 5vw, 2.5rem); margin-bottom:2rem;">✿ MI RUEDA DEL CICLO ✿</div>
+    <div class="mascot-box card" style="margin-bottom: 2rem; max-width: 350px; padding: 2rem;">
+      <span class="mascot-sprite">
+        <svg viewBox="0 0 16 16" width="96" height="96" style="display:block;margin:0 auto" shape-rendering="crispEdges"><rect x="2" y="6" width="12" height="7" fill="var(--mint)"/><rect x="3" y="13" width="10" height="1" fill="var(--mint)"/><rect x="4" y="5" width="8" height="1" fill="var(--mint)"/><rect x="1" y="10" width="2" height="4" fill="var(--mint)"/><rect x="13" y="10" width="2" height="4" fill="var(--mint)"/><rect x="0" y="14" width="3" height="1" fill="var(--mint)"/><rect x="13" y="14" width="3" height="1" fill="var(--mint)"/><rect x="2" y="3" width="4" height="3" fill="var(--mint)"/><rect x="10" y="3" width="4" height="3" fill="var(--mint)"/><rect x="3" y="2" width="2" height="1" fill="var(--mint)"/><rect x="11" y="2" width="2" height="1" fill="var(--mint)"/><rect x="3" y="4" width="2" height="2" fill="#fff"/><rect x="11" y="4" width="2" height="2" fill="#fff"/><rect x="4" y="4" width="1" height="1" fill="#1a1a1a"/><rect x="12" y="4" width="1" height="1" fill="#1a1a1a"/><rect x="3" y="7" width="2" height="1" fill="var(--pink)" opacity="0.8"/><rect x="11" y="7" width="2" height="1" fill="var(--pink)" opacity="0.8"/><rect x="6" y="8" width="1" height="1" fill="#1a1a1a"/><rect x="9" y="8" width="1" height="1" fill="#1a1a1a"/><rect x="7" y="9" width="2" height="1" fill="#1a1a1a"/></svg>
+      </span>
+      <div class="mascot-msg" style="font-size: 1.5rem; max-width: 100%; margin-top: 1rem;">¡Ribbit! Bienvenida. Conecta con tu ciclo.</div>
+    </div>
+    <button id="btnLandingLogin" class="bauth" style="font-size: .8rem; padding: 1.2rem 2rem; border-radius: var(--radius);"><i class="ti ti-brand-google" style="font-size: 1.6rem"></i> ENTRAR CON GOOGLE</button>
   </div>
+
+  <!-- APP VIEW -->
+  <div id="appView" style="display:none;">
+    <div class="auth-bar">
+      <div id="userInfo" class="user-info"></div>
+      <button id="authBtn" class="bauth"><i class="ti ti-logout" aria-hidden="true"></i> SALIR</button>
+    </div>
 
   <header>
     <div class="htitle">✿ MI RUEDA DEL CICLO ✿</div>
@@ -1122,85 +1177,87 @@
       <div class="pbox card">
         <div class="ctitle"><i class="ti ti-pencil" aria-hidden="true"></i> REGISTRO DEL DÍA</div>
 
-        <div class="fg">
-          <span class="fl">FECHA</span>
-          <input type="date" id="inputDate">
-        </div>
-
-        <div class="fg">
-          <span class="fl">¿CÓMO TE SIENTES? ✿</span>
-          <div class="mood-grid" id="moodGrid"></div>
-        </div>
-
-        <div class="fg">
-          <span class="fl">NOTAS</span>
-          <textarea id="inputEmocions" placeholder="¿Cómo te has sentido hoy…"></textarea>
-        </div>
-
-        <div class="fg">
-          <span class="fl">SÍNTOMAS</span>
-          <textarea id="inputSimptomes" placeholder="Cólicos, fatiga, dolor de cabeza…"></textarea>
-        </div>
-
-        <div class="fg">
-          <span class="fl">¿DÓNDE TE DUELE?</span>
-          <div class="body-zones" id="bodyZones"></div>
-        </div>
-
-        <div class="fg">
-          <span class="fl">ENERGÍA</span>
-          <div class="energy-row">
-            <button class="ebtn" data-val="1" aria-label="Energía baja"><i class="ti ti-bolt"
-                aria-hidden="true"></i></button>
-            <button class="ebtn" data-val="2" aria-label="Energía media"><i class="ti ti-bolt"
-                aria-hidden="true"></i></button>
-            <button class="ebtn" data-val="3" aria-label="Energía alta"><i class="ti ti-bolt"
-                aria-hidden="true"></i></button>
-            <span id="energyLabel">SIN DATOS</span>
+        <div class="form-grid">
+          <div class="fg fg-full">
+            <span class="fl">FECHA</span>
+            <input type="date" id="inputDate">
           </div>
-        </div>
 
-        <div class="fg">
-          <span class="fl">TIPO DE FLUJO</span>
-          <div class="dopts">
-            <input type="radio" name="fluix" id="f-sec" value="Seco" class="dopt"><label for="f-sec">SECO</label>
-            <input type="radio" name="fluix" id="f-cremos" value="Cremoso" class="dopt"><label
-              for="f-cremos">CREMOSO</label>
-            <input type="radio" name="fluix" id="f-aquos" value="Acuoso" class="dopt"><label
-              for="f-aquos">ACUOSO</label>
-            <input type="radio" name="fluix" id="f-clara" value="Clara" class="dopt"><label for="f-clara">CLARA</label>
+          <div class="fg fg-full">
+            <span class="fl">¿CÓMO TE SIENTES? ✿</span>
+            <div class="mood-grid" id="moodGrid"></div>
           </div>
-        </div>
 
-        <div class="fg">
-          <span class="fl">DESEO</span>
-          <div class="dopts">
-            <input type="radio" name="desig" id="d-nul" value="nulo" class="dopt"><label for="d-nul">NULO</label>
-            <input type="radio" name="desig" id="d-baix" value="bajo" class="dopt"><label for="d-baix">BAJO</label>
-            <input type="radio" name="desig" id="d-mig" value="medio" class="dopt"><label for="d-mig">MEDIO</label>
-            <input type="radio" name="desig" id="d-alt" value="alto" class="dopt"><label for="d-alt">ALTO</label>
+          <div class="fg">
+            <span class="fl">NOTAS</span>
+            <textarea id="inputEmocions" placeholder="¿Cómo te has sentido hoy…"></textarea>
           </div>
-        </div>
 
-        <div class="fg">
-          <span class="fl">SANGRE</span>
-          <div class="drow" id="dropsRow">
-            <button class="dbtn" data-val="1" aria-label="1 gota"><svg class="drop-svg">
-                <use href="#dropsym" style="color:#ff3a6e" />
-              </svg></button>
-            <button class="dbtn" data-val="2" aria-label="2 gotas"><svg class="drop-svg">
-                <use href="#dropsym" style="color:#ff3a6e" />
-              </svg></button>
-            <button class="dbtn" data-val="3" aria-label="3 gotas"><svg class="drop-svg">
-                <use href="#dropsym" style="color:#ff3a6e" />
-              </svg></button>
-            <button class="dbtn" data-val="4" aria-label="4 gotas"><svg class="drop-svg">
-                <use href="#dropsym" style="color:#ff3a6e" />
-              </svg></button>
-            <button class="dbtn" data-val="5" aria-label="5 gotas"><svg class="drop-svg">
-                <use href="#dropsym" style="color:#ff3a6e" />
-              </svg></button>
-            <span id="dropLabel">NADA</span>
+          <div class="fg">
+            <span class="fl">SÍNTOMAS</span>
+            <textarea id="inputSimptomes" placeholder="Cólicos, fatiga, dolor de cabeza…"></textarea>
+          </div>
+
+          <div class="fg fg-full">
+            <span class="fl">¿DÓNDE TE DUELE?</span>
+            <div class="body-zones" id="bodyZones"></div>
+          </div>
+
+          <div class="fg fg-full">
+            <span class="fl">ENERGÍA</span>
+            <div class="energy-row">
+              <button class="ebtn" data-val="1" aria-label="Energía baja"><i class="ti ti-bolt"
+                  aria-hidden="true"></i></button>
+              <button class="ebtn" data-val="2" aria-label="Energía media"><i class="ti ti-bolt"
+                  aria-hidden="true"></i></button>
+              <button class="ebtn" data-val="3" aria-label="Energía alta"><i class="ti ti-bolt"
+                  aria-hidden="true"></i></button>
+              <span id="energyLabel">SIN DATOS</span>
+            </div>
+          </div>
+
+          <div class="fg">
+            <span class="fl">TIPO DE FLUJO</span>
+            <div class="dopts">
+              <input type="radio" name="fluix" id="f-sec" value="Seco" class="dopt"><label for="f-sec">SECO</label>
+              <input type="radio" name="fluix" id="f-cremos" value="Cremoso" class="dopt"><label
+                for="f-cremos">CREMOSO</label>
+              <input type="radio" name="fluix" id="f-aquos" value="Acuoso" class="dopt"><label
+                for="f-aquos">ACUOSO</label>
+              <input type="radio" name="fluix" id="f-clara" value="Clara" class="dopt"><label for="f-clara">CLARA</label>
+            </div>
+          </div>
+
+          <div class="fg">
+            <span class="fl">DESEO</span>
+            <div class="dopts">
+              <input type="radio" name="desig" id="d-nul" value="nulo" class="dopt"><label for="d-nul">NULO</label>
+              <input type="radio" name="desig" id="d-baix" value="bajo" class="dopt"><label for="d-baix">BAJO</label>
+              <input type="radio" name="desig" id="d-mig" value="medio" class="dopt"><label for="d-mig">MEDIO</label>
+              <input type="radio" name="desig" id="d-alt" value="alto" class="dopt"><label for="d-alt">ALTO</label>
+            </div>
+          </div>
+
+          <div class="fg fg-full">
+            <span class="fl">SANGRE</span>
+            <div class="drow" id="dropsRow">
+              <button class="dbtn" data-val="1" aria-label="1 gota"><svg class="drop-svg">
+                  <use href="#dropsym" style="color:var(--red)" />
+                </svg></button>
+              <button class="dbtn" data-val="2" aria-label="2 gotas"><svg class="drop-svg">
+                  <use href="#dropsym" style="color:var(--red)" />
+                </svg></button>
+              <button class="dbtn" data-val="3" aria-label="3 gotas"><svg class="drop-svg">
+                  <use href="#dropsym" style="color:var(--red)" />
+                </svg></button>
+              <button class="dbtn" data-val="4" aria-label="4 gotas"><svg class="drop-svg">
+                  <use href="#dropsym" style="color:var(--red)" />
+                </svg></button>
+              <button class="dbtn" data-val="5" aria-label="5 gotas"><svg class="drop-svg">
+                  <use href="#dropsym" style="color:var(--red)" />
+                </svg></button>
+              <span id="dropLabel">NADA</span>
+            </div>
           </div>
         </div>
 
@@ -1249,7 +1306,7 @@
     <div class="pbox-dark card">
       <div class="ctitle ctitle-dark"><i class="ti ti-book" aria-hidden="true"></i> MI DIARIO</div>
       <div class="ghdr">
-        <span>FECHA</span><span>ESTADO</span><span>SÍNTOMAS</span><span>FLUJO</span><span>DESEO</span><span>SANGRE</span>
+        <span>FECHA</span><span>ESTADO</span><span>SÍNTOMAS</span><span>FLUJO</span><span>DESEO</span><span>SANGRE</span><span></span>
       </div>
       <div id="gridBody"></div>
     </div>
@@ -1272,6 +1329,8 @@
       </div>
     </div>
   </div>
+
+  </div> <!-- end appView -->
 
   <div id="toast" class="toast"></div>
 
@@ -1329,22 +1388,33 @@
     const ZONE_MAP = Object.fromEntries(ZONES.map(z => [z.id, z]));
 
     const PHASES = {
-      menstruacio: { name: 'MENSTRUACIÓN', label: 'Invierno interior', icon: ico('moon'), col: '#7ab4ff', css: 'phase-winter' },
-      foliclular: { name: 'FOLICULAR', label: 'Renacimiento', icon: ico('plant'), col: '#44ffb0', css: 'phase-spring' },
-      ovulacio: { name: 'OVULACIÓN', label: 'Energía plena', icon: ico('sun'), col: '#ffdd44', css: 'phase-summer' },
-      lutia: { name: 'LÚTEA', label: 'Recogimiento', icon: ico('cloud'), col: '#ff8844', css: 'phase-autumn' },
+      menstruacio: { name: 'MENSTRUACIÓN', label: 'Invierno interior', icon: ico('moon'), col: 'var(--pink2)', css: 'phase-winter' },
+      foliclular: { name: 'FOLICULAR', label: 'Renacimiento', icon: ico('plant'), col: 'var(--mint)', css: 'phase-spring' },
+      ovulacio: { name: 'OVULACIÓN', label: 'Energía plena', icon: ico('sun'), col: 'var(--yellow)', css: 'phase-summer' },
+      lutia: { name: 'LÚTEA', label: 'Recogimiento', icon: ico('cloud'), col: 'var(--lav)', css: 'phase-autumn' },
+    };
+
+    const drawFrog = (col, face = 'smile', acc = '') => {
+      let f = '';
+      if (face === 'smile') f = `<rect x="6" y="8" width="1" height="1" fill="#1a1a1a"/><rect x="9" y="8" width="1" height="1" fill="#1a1a1a"/><rect x="7" y="9" width="2" height="1" fill="#1a1a1a"/>`;
+      else if (face === 'sad') f = `<rect x="6" y="9" width="1" height="1" fill="#1a1a1a"/><rect x="9" y="9" width="1" height="1" fill="#1a1a1a"/><rect x="7" y="8" width="2" height="1" fill="#1a1a1a"/>`;
+      else if (face === 'tired') f = `<rect x="6" y="9" width="4" height="1" fill="#1a1a1a"/>`;
+      else if (face === 'o') f = `<rect x="7" y="8" width="2" height="2" fill="#1a1a1a"/>`;
+      else f = `<rect x="6" y="8" width="4" height="1" fill="#1a1a1a"/>`;
+      
+      return `<svg viewBox="0 0 16 16" width="64" height="64" style="display:block;margin:0 auto" shape-rendering="crispEdges"><rect x="2" y="6" width="12" height="7" fill="${col}"/><rect x="3" y="13" width="10" height="1" fill="${col}"/><rect x="4" y="5" width="8" height="1" fill="${col}"/><rect x="1" y="10" width="2" height="4" fill="${col}"/><rect x="13" y="10" width="2" height="4" fill="${col}"/><rect x="0" y="14" width="3" height="1" fill="${col}"/><rect x="13" y="14" width="3" height="1" fill="${col}"/><rect x="2" y="3" width="4" height="3" fill="${col}"/><rect x="10" y="3" width="4" height="3" fill="${col}"/><rect x="3" y="2" width="2" height="1" fill="${col}"/><rect x="11" y="2" width="2" height="1" fill="${col}"/><rect x="3" y="4" width="2" height="2" fill="#fff"/><rect x="11" y="4" width="2" height="2" fill="#fff"/><rect x="4" y="4" width="1" height="1" fill="#1a1a1a"/><rect x="12" y="4" width="1" height="1" fill="#1a1a1a"/><rect x="3" y="7" width="2" height="1" fill="var(--pink)" opacity="0.8"/><rect x="11" y="7" width="2" height="1" fill="var(--pink)" opacity="0.8"/>${f}${acc}</svg>`;
     };
 
     const MASCOT = {
-      menstruacio: { sprite: ico('moon'), msg: 'Cuídate mucho. Eres fuerte.', col: '#7ab4ff' },
-      foliclular: { sprite: ico('plant'), msg: '¡La energía te llama!', col: '#44ffb0' },
-      ovulacio: { sprite: ico('sun'), msg: '¡Brillante como nunca!', col: '#ffdd44' },
-      lutia: { sprite: ico('cloud'), msg: 'Tiempo de recogerte.', col: '#ff8844' },
-      tired: { sprite: ico('zzz'), msg: 'Descansa. Te lo mereces.', col: '#b06aff' },
-      happy: { sprite: ico('flower'), msg: '¡Qué bien te sientes!', col: '#ffaac8' },
-      sad: { sprite: ico('cloud-rain'), msg: 'Aquí estoy contigo.', col: '#7ab4ff' },
-      anxious: { sprite: ico('wind'), msg: 'Respira. Todo pasa.', col: '#ff8844' },
-      default: { sprite: ico('sparkles'), msg: '¡Hola! ¿Cómo estás hoy?', col: '#ffaac8' },
+      menstruacio: { sprite: drawFrog('var(--pink2)', 'o', '<rect x="6" y="11" width="4" height="3" fill="var(--pink)"/>'), msg: 'Croac. Toca cuidarse mucho.', col: 'var(--pink2)' },
+      foliclular: { sprite: drawFrog('var(--mint)', 'smile', '<rect x="1" y="3" width="2" height="1" fill="var(--text-mid)"/><rect x="2" y="2" width="1" height="1" fill="var(--text-mid)"/>'), msg: '¡La energía crece, croac!', col: 'var(--mint)' },
+      ovulacio: { sprite: drawFrog('var(--yellow)', 'smile', '<rect x="1" y="1" width="1" height="1" fill="#fff"/><rect x="14" y="1" width="1" height="1" fill="#fff"/>'), msg: '¡Brillante y saltarina!', col: 'var(--yellow)' },
+      lutia: { sprite: drawFrog('var(--lav)', 'neutral', ''), msg: 'Tiempo de buscar tu charca.', col: 'var(--lav)' },
+      tired: { sprite: drawFrog('var(--text-muted)', 'tired', '<text x="12" y="6" font-family="VT323" font-size="6" fill="var(--text-mid)">z</text>'), msg: 'Zzz... croac.', col: 'var(--text-muted)' },
+      happy: { sprite: drawFrog('var(--mint)', 'smile', ''), msg: '¡Ribbit! ¡Qué buen día!', col: 'var(--mint)' },
+      sad: { sprite: drawFrog('var(--bg4)', 'sad', '<rect x="12" y="7" width="1" height="2" fill="#7ab4ff"/>'), msg: 'Aquí estoy contigo, croac.', col: 'var(--bg4)' },
+      anxious: { sprite: drawFrog('var(--lav)', 'o', '<rect x="2" y="6" width="1" height="2" fill="#7ab4ff"/>'), msg: 'Respira hondo... ribbit.', col: 'var(--lav)' },
+      default: { sprite: drawFrog('var(--mint)', 'smile', ''), msg: '¡Croac! ¿Cómo estás hoy?', col: 'var(--mint)' },
     };
 
     const COMFORT = {
@@ -1443,18 +1513,25 @@
     });
 
     const btnAuth = document.getElementById('authBtn');
+    const btnLandingLogin = document.getElementById('btnLandingLogin');
     const userInfoEl = document.getElementById('userInfo');
-    btnAuth.addEventListener('click', () => user ? signOut(auth) : signInWithRedirect(auth, provider));
+    const landingView = document.getElementById('landingView');
+    const appView = document.getElementById('appView');
+
+    btnAuth.addEventListener('click', () => signOut(auth));
+    btnLandingLogin.addEventListener('click', () => signInWithRedirect(auth, provider));
     getRedirectResult(auth).catch(err => console.error('Login error:', err));
 
     onAuthStateChanged(auth, async u => {
       user = u;
       if (u) {
-        btnAuth.textContent = 'SALIR';
+        landingView.style.display = 'none';
+        appView.style.display = 'block';
         if (userInfoEl) userInfoEl.textContent = u.displayName.toUpperCase();
         await loadData();
       } else {
-        btnAuth.textContent = 'LOGIN GOOGLE';
+        landingView.style.display = 'flex';
+        appView.style.display = 'none';
         if (userInfoEl) userInfoEl.textContent = '';
         allData = { entries: {} };
         document.getElementById('gridBody').innerHTML = '<div style="text-align:center;padding:2rem;font-size:.95rem;color:var(--text-muted)">Inicia sesión para ver tus datos</div>';
@@ -1587,6 +1664,9 @@
         <div class="dc" style="font-size:.85rem;color:var(--mint)">${e.fluix || '-'}</div>
         <div class="dc" style="font-size:.85rem;color:var(--lav)">${e.desig || '-'}</div>
         <div class="dc" style="text-align:center">${renderDrops(e.sang || 0) || '—'}</div>
+        <div class="dc" style="text-align:right">
+          <button class="del-btn-diary" data-date="${e.date}" aria-label="Borrar" style="background:none;border:none;color:var(--pink3);cursor:pointer;font-size:1.1rem;transition:color .2s;"><i class="ti ti-trash"></i></button>
+        </div>
         <div class="mob-summary">
           <span class="mob-date">${e.date}</span>
           <span class="mob-preview">${mood ? mood.emoji + ' ' : ''}${e.emocions || e.simptomes || '-'}</span>
@@ -1601,12 +1681,21 @@
           <div class="mob-field"><span class="mob-label">DESEO</span><span style="color:var(--lav)">${e.desig || '-'}</span></div>
           <div class="mob-field"><span class="mob-label">SANGRE</span><span>${renderDrops(e.sang || 0) || '—'}</span></div>
           ${e.energia ? `<div class="mob-field"><span class="mob-label">ENERGÍA</span><span>${renderBolts(e.energia)}</span></div>` : ''}
+          <button class="del-btn-diary" data-date="${e.date}" style="margin-top:.6rem;width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--pink3);padding:.4rem;font-family:'Press Start 2P';font-size:.35rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.3rem;transition:background .2s;"><i class="ti ti-trash"></i> BORRAR</button>
         </div>
       </div>`;
       }).join('');
       body.querySelectorAll('.mob-summary').forEach(s =>
         s.addEventListener('click', () => s.closest('.drow2').classList.toggle('open')));
     }
+
+    document.getElementById('gridBody').addEventListener('click', (ev) => {
+      const btn = ev.target.closest('.del-btn-diary');
+      if (btn) {
+        ev.stopPropagation();
+        deleteRecord(btn.dataset.date);
+      }
+    });
 
     function renderCalendar() {
       const y = calMonth.getFullYear(), m = calMonth.getMonth();
@@ -1750,30 +1839,29 @@
       ).join('');
     }
 
-    document.getElementById('btnDelete').addEventListener('click', async () => {
+    async function deleteRecord(date) {
       if (!user) { showToast('¡Inicia sesión primero!'); return; }
-      const date = document.getElementById('inputDate').value;
-      if (!date) { showToast('¡Pon una fecha!'); return; }
-
-      if (!allData.entries[date]) {
-        showToast('No hay registro para borrar.');
-        return;
-      }
-
-      if (!confirm('¿Seguro que quieres borrar el registro de este día?')) return;
+      if (!allData.entries[date]) { showToast('No hay registro para borrar.'); return; }
+      if (!confirm(`¿Seguro que quieres borrar el registro del ${date}?`)) return;
 
       delete allData.entries[date];
 
       try {
         await setDoc(doc(db, 'users', user.uid), allData);
         showToast('¡REGISTRO BORRADO!');
-        clearForm();
+        if (document.getElementById('inputDate').value === date) clearForm();
         render(allData);
         updatePhaseUI();
         updateMascot();
         renderTodayPanel();
         if (document.getElementById('tab-calendari').classList.contains('active')) renderCalendar();
       } catch (e) { console.error(e); showToast('Error al borrar.'); }
+    }
+
+    document.getElementById('btnDelete').addEventListener('click', () => {
+      const date = document.getElementById('inputDate').value;
+      if (!date) { showToast('¡Pon una fecha!'); return; }
+      deleteRecord(date);
     });
 
     function clearForm() {
