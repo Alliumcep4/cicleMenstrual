@@ -1316,7 +1316,6 @@
           </div>
 
           <div style="display:flex; gap:.6rem; margin-top:.6rem;">
-
             <button id="btnSave" class="bsave" style="flex:2.5; width:100%;">
               <i class="ti ti-check" aria-hidden="true"></i> GUARDAR DÍA
             </button>
@@ -1904,11 +1903,7 @@
       } catch (e) { console.error(e); showToast('Error al borrar.'); }
     }
 
-    document.getElementById('btnDelete').addEventListener('click', () => {
-      const date = document.getElementById('inputDate').value;
-      if (!date) { showToast('¡Pon una fecha!'); return; }
-      deleteRecord(date);
-    });
+    // Borrar desde el diario (listener en render() con .del-btn-diary)
 
     function clearForm() {
       document.getElementById('inputEmocions').value = '';
